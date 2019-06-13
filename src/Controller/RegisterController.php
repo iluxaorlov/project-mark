@@ -26,9 +26,12 @@ class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $passwordEncoder->encodePassword($user, $form->get('plainPassword')->getData())
+            $password = $passwordEncoder->encodePassword(
+                $user,
+                $form->get('password')->getData()
             );
+
+            $user->setPassword($password);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

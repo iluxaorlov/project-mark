@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,17 +50,22 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
+     * @Assert\NotBlank(message="Введите пароль")
      */
     private $password;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @Assert\Length(min="8", minMessage="Пароль должен содержать не менее восьми символов")
-     * @Assert\NotBlank(message="Введите пароль")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
-    private $plainPassword;
+    private $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -126,9 +132,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -142,19 +148,19 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getPlainPassword()
+    public function getPosts(): ArrayCollection
     {
-        return $this->plainPassword;
+        return $this->posts;
     }
 
     /**
-     * @param string $plainPassword
+     * @param ArrayCollection $posts
      */
-    public function setPlainPassword(string $plainPassword): void
+    public function setPosts(ArrayCollection $posts): void
     {
-        $this->plainPassword = $plainPassword;
+        $this->posts = $posts;
     }
 
     /**
@@ -173,8 +179,11 @@ class User implements UserInterface
         return null;
     }
 
+    /**
+     * @return null
+     */
     public function eraseCredentials()
     {
-        $this->plainPassword = null;
+        return null;
     }
 }

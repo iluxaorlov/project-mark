@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.nickname) }}
+        {{ form_row(form.fullName) }}
+        {{ form_row(form.about) }}
+        <button type="submit">Сохранить</button>
+    {{ form_end(form) }}
+{% endblock %}
