@@ -16,10 +16,12 @@ class UserController extends AbstractController
      * @param Request $request
      * @return Response
      *
-     * @Route("/edit")
+     * @Route("/edit", name="edit")
      */
     public function edit(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -28,8 +30,8 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
-            return $this->redirectToRoute('user', [
-                'id' => $user->getId()
+            return $this->redirectToRoute('user_view', [
+                'nickname' => $user->getNickname()
             ]);
         }
 
@@ -43,7 +45,7 @@ class UserController extends AbstractController
      * @param PostRepository $postRepository
      * @return Response
      *
-     * @Route("/{id}", name="user")
+     * @Route("/{nickname}", name="view")
      */
     public function view(User $user, PostRepository $postRepository)
     {

@@ -3,5 +3,47 @@
 {% block title %}{{ user.nickname }}{% endblock %}
 
 {% block body %}
-    <h1>{{ user.nickname }}</h1>
+    <div id="container">
+        <div id="profile">
+            <h1 id="profile__login">{{ user.nickname }}</h1>
+            {% if user.fullname %}
+                <h2 id="profile__name">{{ user.fullname }}</h2>
+            {% endif %}
+            {% if user.about %}
+                <p id="profile__about">{{ user.about }}</p>
+            {% endif %}
+            <div id="profile__detail">
+                <a class="profile__detail__item" href="#">
+                    <div class="profile__detail__item__count">0</div>
+                    <div class="profile__detail__item__name">Публикации</div>
+                </a>
+                <a class="profile__detail__item" href="#">
+                    <div class="profile__detail__item__count">0</div>
+                    <div class="profile__detail__item__name">Подписки</div>
+                </a>
+                <a class="profile__detail__item" href="#">
+                    <div class="profile__detail__item__count">0</div>
+                    <div class="profile__detail__item__name">Подписчики</div>
+                </a>
+            </div>
+            {% if user == app.user %}
+                <div id="profile__action">
+                    {% include 'user/action.html.twig' %}
+                </div>
+            {% endif %}
+        </div>
+        {% if user == app.user %}
+            <div id="profile__create">
+                <textarea id="profile__create__text" name="text" rows="1" placeholder="Поделитесь новостью..."></textarea>
+                <button id="profile__create__button">Поделиться</button>
+            </div>
+        {% endif %}
+        <div id="publications">
+            {% if posts %}
+                {% include 'post/post.html.twig' %}
+            {% else %}
+                <p id="empty">Записи не найдены</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

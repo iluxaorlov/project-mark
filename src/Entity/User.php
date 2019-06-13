@@ -28,6 +28,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(type="string", nullable=false)
+     * @Assert\Regex(pattern="/[^register|^login|^logout|^edit|^create]/", message="Пользователь с таким именем уже существует")
      * @Assert\Regex(pattern="/[a-zA-Z0-9]+/", message="Имя пользователя должно содержать только латинские буквы или цифры")
      * @Assert\NotBlank(message="Введите имя пользователя")
      */
@@ -52,6 +53,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", nullable=false)
      * @Assert\NotBlank(message="Введите пароль")
+     * @Assert\Length(min="8", minMessage="Пароль должен содержать не менее {{ limit }} символов")
      */
     private $password;
 

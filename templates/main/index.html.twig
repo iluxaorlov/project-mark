@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <div id="publications">
+            {% if posts %}
+                {% include 'post/post.html.twig' %}
+            {% else %}
+                <p id="empty">Записи не найдены</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
