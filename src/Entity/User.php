@@ -64,9 +64,29 @@ class User implements UserInterface
      */
     private $posts;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="following")
+     */
+    private $followers;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followers")
+     * @ORM\JoinTable(name="follow",
+     *     joinColumns={@ORM\JoinColumn(name="user", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="following", referencedColumnName="id")}
+     *     )
+     */
+    private $following;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->following = new ArrayCollection();
     }
 
     /**
@@ -163,6 +183,38 @@ class User implements UserInterface
     public function setPosts(ArrayCollection $posts): void
     {
         $this->posts = $posts;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
+    /**
+     * @param ArrayCollection $followers
+     */
+    public function setFollowers(ArrayCollection $followers): void
+    {
+        $this->followers = $followers;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFollowing()
+    {
+        return $this->following;
+    }
+
+    /**
+     * @param ArrayCollection $following
+     */
+    public function setFollowing(ArrayCollection $following): void
+    {
+        $this->following = $following;
     }
 
     /**
