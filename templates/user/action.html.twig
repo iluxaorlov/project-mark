@@ -1,3 +1,11 @@
-{% if app.user == user %}
+{% if not app.user %}
+    <a class="profile__action__link" href="{{ path('index') }}">Подписаться</a>
+{% elseif app.user == user %}
     <a class="profile__action__link" href="{{ path('edit', {'nickname': user.nickname}) }}">Редактировать</a>
+{% elseif user.followers.contains(app.user) %}
+    <button id="unfollow" class="profile__action__button">Отписаться</button>
+{% elseif user.following.contains(app.user) %}
+    <button id="follow" class="profile__action__button">Подписаться в ответ</button>
+{% else %}
+    <button id="follow" class="profile__action__button">Подписаться</button>
 {% endif %}

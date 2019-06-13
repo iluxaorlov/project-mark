@@ -16,9 +16,8 @@ class Post
      * @var string
      *
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="App\Service\Generator")
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $id;
 

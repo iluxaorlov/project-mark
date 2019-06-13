@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class FollowController extends AbstractController
 {
     /**
+     * @param User $user
+     * @return Response
+     *
      * @Route("/{nickname}/following", name="following")
      */
     public function following(User $user)

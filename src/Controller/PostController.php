@@ -15,21 +15,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
+     * @param User $user
      * @param Request $request
      * @param PostRepository $postRepository
      * @throws NotFoundHttpException
      * @throws HttpException
      * @return Response
      *
-     * @Route("/post/create")
+     * @Route("/{nickname}/create")
      */
-    public function create(Request $request, PostRepository $postRepository)
+    public function create(User $user, Request $request, PostRepository $postRepository)
     {
         if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
 
-        $user = $this->getUser();
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+
+        if ($currentUser !== $user) {
+            throw new NotFoundHttpException();
+        }
+
         $text = $request->get('text');
 
         if (!$text) {
@@ -37,7 +44,7 @@ class PostController extends AbstractController
         }
 
         $post = new Post();
-        $post->setUser($user);
+        $post->setUser($currentUser);
         $post->setText($text);
 
         $entityManager = $this->getDoctrine()->getManager();

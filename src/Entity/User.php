@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,9 +19,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="App\Service\Generator")
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $id;
 
@@ -172,7 +172,7 @@ class User implements UserInterface
     /**
      * @return ArrayCollection
      */
-    public function getPosts(): ArrayCollection
+    public function getPosts()
     {
         return $this->posts;
     }

@@ -147,7 +147,7 @@ $(document).ready(function () {
     $(this).html('<i id="load" class="fas fa-spinner fa-spin" style="font-size: 19px"></i>');
     $.ajax({
       type: 'post',
-      url: '/post/create',
+      url: window.location.pathname + '/create',
       data: {
         'text': $('#profile__create__text').val()
       },

@@ -1,0 +1,11 @@
+<div id="navigator">
+    <div id="navigator__container">
+        {% if app.user %}
+            <a id="navigator__search" href="#"><i class="fas fa-search"></i></a>
+        {% endif %}
+        <a id="navigator__index" href="{{ path('index') }}"><img id="navigator__logotype" src="{{ asset('public/img/logo.png') }}"></a>
+        {% if app.user %}
+            <a id="navigator__user" href="{{ path('view', {'nickname': app.user.nickname}) }}"><i class="fas fa-user"></i></a>
+        {% endif %}
+    </div>
+</div>
