@@ -3,25 +3,49 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class FollowController extends AbstractController
 {
+    private const LIMIT = 64;
+
     /**
      * @param User $user
+     * @param Request $request
      * @return Response
      *
      * @Route("/{nickname}/following", name="following")
      */
-    public function following(User $user)
+    public function following(User $user, Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if ($request->isXmlHttpRequest()) {
+            $offset = $request->get('offset');
 
-        $users = $user->getFollowing();
+            if (!$offset) {
+                throw new HttpException(400);
+            }
+
+            $users = $user->getFollowing()->slice($offset, self::LIMIT);
+
+            if (!$users) {
+                throw new HttpException(204);
+            }
+
+            return $this->render('user/user.html.twig', [
+                'users' => $users
+            ]);
+        }
+
+        $users = $user->getFollowing()->slice(0, self::LIMIT);
 
         return $this->render('follow/following.html.twig', [
             'users' => $users
@@ -30,15 +54,32 @@ class FollowController extends AbstractController
 
     /**
      * @param User $user
+     * @param Request $request
      * @return Response
      *
      * @Route("/{nickname}/followers", name="followers")
      */
-    public function followers(User $user)
+    public function followers(User $user, Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if ($request->isXmlHttpRequest()) {
+            $offset = $request->get('offset');
 
-        $users = $user->getFollowers();
+            if (!$offset) {
+                throw new HttpException(400);
+            }
+
+            $users = $user->getFollowers()->slice($offset, self::LIMIT);
+
+            if (!$users) {
+                throw new HttpException(204);
+            }
+
+            return $this->render('user/user.html.twig', [
+                'users' => $users
+            ]);
+        }
+
+        $users = $user->getFollowers()->slice(0, self::LIMIT);
 
         return $this->render('follow/followers.html.twig', [
             'users' => $users

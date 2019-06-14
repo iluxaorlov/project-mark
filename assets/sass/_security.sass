@@ -1,0 +1,60 @@
+header
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: $mc
+
+  #logotype
+    height: 64px
+    margin-top: 64px
+    margin-bottom: 115px
+
+main
+  max-width: 640px
+  padding: 0 16px
+  margin: 0 auto
+  text-align: center
+
+  form
+    margin: 0 auto
+    margin-top: -51px
+    display: flex
+    flex-direction: column
+
+    .nickname
+      font-size: 16px
+      padding: 16px
+      border: none
+      outline: none
+      border-radius: 4px 4px 0 0
+
+    .password
+      @extend .nickname
+      border-radius: 0
+
+    .confirm
+      @extend .password
+
+    .submit
+      font-size: 16px
+      padding: 16px
+      border: none
+      outline: none
+      background-color: #8000ff
+      color: #ffffff
+      cursor: pointer
+      border-radius: 0 0 4px 4px
+
+  .undertext
+    display: inline-block
+    padding: 16px 0
+    font-size: 16px
+
+    .link
+      color: #8000ff
+      text-decoration: none
+
+  .error
+    color: #ff0000
+    margin-bottom: 16px
+    text-align: center

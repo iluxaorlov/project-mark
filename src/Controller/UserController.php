@@ -5,25 +5,55 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\PostRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    private const LIMIT = 64;
+
     /**
      * @param User $user
+     * @param Request $request
      * @param PostRepository $postRepository
      * @return Response
      *
      * @Route("/{nickname}", name="view")
      */
-    public function view(User $user, PostRepository $postRepository)
+    public function view(User $user, Request $request, PostRepository $postRepository)
     {
+        if ($request->isXmlHttpRequest()) {
+            $offset = $request->get('offset');
+
+            if (!$offset) {
+                throw new HttpException(400);
+            }
+
+            $posts = $postRepository->findBy(
+                ['user' => $user],
+                ['createdAt' => 'DESC'],
+                self::LIMIT,
+                $offset
+            );
+
+            if (!$posts) {
+                throw new HttpException(204);
+            }
+
+            return $this->render('post/post.html.twig', [
+                'posts' => $posts
+            ]);
+        }
+
         $posts = $postRepository->findBy(
             ['user' => $user],
-            ['createdAt' => 'DESC']
+            ['createdAt' => 'DESC'],
+            self::LIMIT
         );
 
         return $this->render('user/view.html.twig', [
@@ -33,17 +63,23 @@ class UserController extends AbstractController
     }
 
     /**
+     * @param User $user
      * @param Request $request
      * @return Response
      *
      * @Route("/{nickname}/edit", name="edit")
+     * @IsGranted("ROLE_USER")
      */
     public function edit(User $user, Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
 
-        $user = $this->getUser();
-        $form = $this->createForm(UserType::class, $user);
+        if ($currentUser !== $user) {
+            throw new NotFoundHttpException();
+        }
+
+        $form = $this->createForm(UserType::class, $currentUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +87,7 @@ class UserController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('view', [
-                'nickname' => $user->getNickname()
+                'nickname' => $currentUser->getNickname()
             ]);
         }
 

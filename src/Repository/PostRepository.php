@@ -19,6 +19,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function findPosts($currentUser, $following, $limit, $offset = 0) {
+        return $this->createQueryBuilder('p')
+            ->where('p.user = :currentUser')
+            ->orWhere('p.user IN (:following)')
+            ->setParameters(['currentUser' => $currentUser, 'following' => $following])
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

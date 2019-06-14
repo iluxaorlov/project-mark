@@ -1,0 +1,83 @@
+#publications
+  display: grid
+  grid-gap: 16px
+
+  .publication
+    background-color: #ffffff
+    border-radius: 4px
+
+    .publication__head
+      position: relative
+      display: flex
+      padding: 16px
+      border-bottom: 1px solid $bc
+
+      .publication__head__user
+        font-size: 16px
+        text-decoration: none
+        color: $mc
+        transition: color 125ms linear
+
+      .publication__head__date
+        font-size: 16px
+        padding: 0 16px
+        color: $bc
+
+    .publication__body
+      padding: 16px 16px 16px 16px
+
+      .publication__body__text
+        -webkit-text-size-adjust: none
+        -moz-text-size-adjust: none
+        font-size: 16px
+        word-break: break-word
+
+        .publication__body__text__show
+          display: block
+          color: $mc
+
+        .publication__body__text__hide
+          display: none
+
+    .publication__foot
+      display: flex
+      align-items: center
+      padding: 16px
+      border-top: 1px solid $bc
+
+      .publication__foot__like
+        display: flex
+        justify-content: center
+        align-items: center
+        color: $bc
+        background: none
+        border: none
+
+        .publication__foot__like__icon
+          cursor: pointer
+          font-size: 19px
+
+        .publication__foot__like__count
+          color: $bc
+          text-decoration: none
+          font-size: 16px
+          margin-left: 16px
+
+      .publication__foot__unlike
+        display: flex
+        justify-content: center
+        align-items: center
+        font-size: 19px
+        color: #ff0000
+        background: none
+        border: none
+
+        .publication__foot__unlike__icon
+          cursor: pointer
+          font-size: 19px
+
+        .publication__foot__unlike__count
+          color: #ff0000
+          text-decoration: none
+          font-size: 16px
+          margin-left: 16px

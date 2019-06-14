@@ -1,0 +1,22 @@
+#users 
+  display: flex
+  flex-direction: column
+
+  .user
+    background-color: #ffffff
+    border-bottom: 1px solid #e5e5e5
+    padding: 16px
+    font-size: 16px
+    text-decoration: none
+    color: #8000ff
+    transition: color 125ms linear
+
+    &:first-child
+      border-radius: 4px 4px 0 0
+
+    &:last-child
+      border: none
+      border-radius: 0 0 4px 4px
+
+    &:only-child
+      border-radius: 4px

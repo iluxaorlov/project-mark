@@ -1,0 +1,44 @@
+$mc: #8000ff
+$bc: #dacfe5
+
+*
+  font-family: 'Roboto', sans-serif
+  margin: 0
+  padding: 0
+  outline: none
+
+  body
+    margin-right: calc(100% - 100vw)
+    overflow-x: hidden
+    background-color: $bc
+    min-width: 320px
+
+@import navigator
+
+@import security
+
+#container
+  max-width: 640px
+  margin: 0 auto
+  display: grid
+  grid-gap: 16px
+  padding: 16px
+  padding-top: 64px
+
+  #empty
+    -webkit-text-size-adjust: none
+    -moz-text-size-adjust: none
+    font-size: 16px
+    padding: 16px
+    text-align: center
+    opacity: 0.5
+  
+  @import profile
+
+  @import publication
+
+  @import user
+
+  @import edit
+
+  @import search
