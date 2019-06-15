@@ -114,9 +114,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string $nickname
+     * @param string|null $nickname
      */
-    public function setNickname(string $nickname): void
+    public function setNickname(?string $nickname): void
     {
         $this->nickname = $nickname;
     }

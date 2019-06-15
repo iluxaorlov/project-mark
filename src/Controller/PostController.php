@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Repository\PostRepository;
+use App\Service\FormatText;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,13 +23,14 @@ class PostController extends AbstractController
      * @param User $user
      * @param Request $request
      * @param PostRepository $postRepository
+     * @param FormatText $formatText
      * @throws NotFoundHttpException
      * @throws HttpException
      * @return Response
      *
      * @Route("/{nickname}/create")
      */
-    public function create(User $user, Request $request, PostRepository $postRepository)
+    public function create(User $user, Request $request, PostRepository $postRepository, FormatText $formatText)
     {
         if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
@@ -49,7 +51,7 @@ class PostController extends AbstractController
 
         $post = new Post();
         $post->setUser($currentUser);
-        $post->setText($text);
+        $post->setText($formatText->formatText($text));
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($post);

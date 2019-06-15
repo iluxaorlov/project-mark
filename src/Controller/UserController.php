@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ use App\Service\FormatText;
 class UserController extends AbstractController
 {
     private const LIMIT = 64;
+    private static $lastNickname = null;
 
     /**
      * @param User $user
@@ -68,12 +70,13 @@ class UserController extends AbstractController
     /**
      * @param User $user
      * @param Request $request
+     * @param FormatText $formatText
      * @return Response
      *
      * @Route("/{nickname}/edit", name="edit")
      * @IsGranted("ROLE_USER")
      */
-    public function edit(User $user, Request $request, FormatText $formatText)
+    public function edit(User $user, Request $request, FormatText $formatText, UserRepository $userRepository)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -82,19 +85,24 @@ class UserController extends AbstractController
             throw new NotFoundHttpException();
         }
 
+        if (!self::$lastNickname) {
+            self::$lastNickname = $currentUser->getNickname();
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setNickname($formatText->formatNickname($form->get('nickname')->getData()));
-            $user->setAbout($formatText->formatAbout($form->get('about')->getData()));
-
+            $user->setAbout($formatText->formatText($form->get('about')->getData()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
             return $this->redirectToRoute('view', [
                 'nickname' => $user->getNickname()
             ]);
+        } else {
+            $user->setNickname(self::$lastNickname);
         }
 
         return $this->render('user/edit.html.twig', [

@@ -38,5 +38,7 @@
             }}) }}
             <button class="edit__button" type="submit">Сохранить</button>
         {{ form_end(form) }}
+        {{ form_errors(form.nickname) }}
+        <a class="exit__button" href="{{ path('logout') }}">Выйти</a>
     </div>
 {% endblock %}

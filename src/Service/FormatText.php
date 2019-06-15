@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 class FormatText
 {
     /**
@@ -14,22 +16,30 @@ class FormatText
     }
 
     /**
-     * @param string $about
+     * @param string $text
+     * @throws HttpException
      * @return string
      */
-    public function formatAbout(?string $about): ?string
+    public function formatText(?string $text): ?string
     {
-        if (!$about) {
+        if (!$text) {
             return null;
         }
 
-        $aboutToArray = explode(PHP_EOL, $about);
-        $resultArray = [];
+        $text = trim($text);
 
-        foreach ($aboutToArray as $string) {
-            $resultArray[] = htmlentities($string);
+        if (!$text) {
+            throw new HttpException(204);
         }
 
-        return implode('<br>', $resultArray);
+        $text = preg_replace('/\n+/', "\n", $text);
+        $explodeText = explode("\n", $text);
+        $result = [];
+
+        foreach ($explodeText as $string) {
+            $result[] = htmlentities($string);
+        }
+
+        return implode('<br>', $result);
     }
 }
