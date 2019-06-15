@@ -1,11 +1,11 @@
 {% for post in posts %}
-    <div class="publication">
-        <div class="publication__head">
-            <a class="publication__head__user" href="{{ path('view', {'nickname': post.user.nickname}) }}">{{ post.user.nickname }}</a>
-            <p class="publication__head__date">{{ post.createdAt|date('d.m.Y') }}</p>
+    <div class="post">
+        <div class="post__head">
+            <a class="post__head__user" href="{{ path('view', {'nickname': post.user.nickname}) }}">{{ post.user.nickname }}</a>
+            <p class="post__head__date">{{ post.createdAt|date('d.m.Y') }}</p>
         </div>
-        <div class="publication__body">
-            <p class="publication__body__text">{{ post.text }}</p>
+        <div class="post__body">
+            <p class="post__body__text">{{ post.text|cut|raw }}</p>
         </div>
     </div>
 {% endfor %}

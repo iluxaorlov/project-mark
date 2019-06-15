@@ -14,7 +14,7 @@
             {% endif %}
             <div id="profile__detail">
                 <a class="profile__detail__item" href="#">
-                    <div class="profile__detail__item__count">0</div>
+                    <div class="profile__detail__item__count">{{ countPosts }}</div>
                     <div class="profile__detail__item__name">Публикации</div>
                 </a>
                 <a class="profile__detail__item" href="{{ path('following', {'nickname': user.nickname}) }}">
@@ -26,11 +26,9 @@
                     <div class="profile__detail__item__name">Подписчики</div>
                 </a>
             </div>
-            {% if user == app.user %}
-                <div id="profile__action">
-                    {% include 'user/action.html.twig' %}
-                </div>
-            {% endif %}
+            <div id="profile__action">
+                {% include 'user/action.html.twig' %}
+            </div>
         </div>
         {% if user == app.user %}
             <div id="profile__create">
@@ -38,7 +36,7 @@
                 <button id="profile__create__button">Поделиться</button>
             </div>
         {% endif %}
-        <div id="publications">
+        <div id="posts">
             {% if posts %}
                 {% include 'post/post.html.twig' %}
             {% else %}

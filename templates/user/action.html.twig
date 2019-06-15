@@ -1,7 +1,11 @@
 {% if not app.user %}
-    <a class="profile__action__link" href="{{ path('index') }}">Подписаться</a>
+    <form action="{{ path('login') }}" method="GET">
+        <button class="profile__action__button" type="submit">Подписаться</button>
+    </form>
 {% elseif app.user == user %}
-    <a class="profile__action__link" href="{{ path('edit', {'nickname': user.nickname}) }}">Редактировать</a>
+    <form action="{{ path('edit', {'nickname': user.nickname}) }}" method="GET">
+        <button class="profile__action__button" type="submit">Редактировать</button>
+    </form>
 {% elseif user.followers.contains(app.user) %}
     <button id="unfollow" class="profile__action__button">Отписаться</button>
 {% elseif user.following.contains(app.user) %}

@@ -51,8 +51,8 @@ $(document).ready(function() {
     });
 
     function minimize() {
-        $text.each(function(index, element) {
-            if ($(element).children('.publication__body__text__hide').length > 0) {
+        $('.post__body__text').each(function(index, element) {
+            if ($(element).children('.post__body__text__hide').length > 0) {
                 $(element).css('cursor', 'pointer');
             }
         });

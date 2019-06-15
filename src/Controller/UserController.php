@@ -50,6 +50,7 @@ class UserController extends AbstractController
             ]);
         }
 
+        $countPosts = $postRepository->countUserPosts($user);
         $posts = $postRepository->findBy(
             ['user' => $user],
             ['createdAt' => 'DESC'],
@@ -58,6 +59,7 @@ class UserController extends AbstractController
 
         return $this->render('user/view.html.twig', [
             'user' => $user,
+            'countPosts' => $countPosts,
             'posts' => $posts
         ]);
     }

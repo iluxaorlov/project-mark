@@ -19,7 +19,7 @@ class RegisterController extends AbstractController
      *
      * @Route("/register", name="register")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -35,7 +35,7 @@ class RegisterController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('register');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('security/register.html.twig', [

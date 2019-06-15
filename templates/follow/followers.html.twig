@@ -5,7 +5,7 @@
 {% block body %}
     <div id="container">
         <div id="users">
-            {% if users.count %}
+            {% if users %}
                 {% include 'user/user.html.twig' %}
             {% else %}
                 <p id="empty">Подписчики не найдены</p>

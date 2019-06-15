@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     $(window).on('scroll', function() {
         if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {
-            if ($('#publications').length > 0) {
+            if ($('#posts').length > 0) {
                 if (!alreadyLoad) {
                     loadPublications();
                 }
@@ -25,12 +25,12 @@ $(document).ready(function() {
             type: 'post',
             url: window.location.pathname,
             data: {
-                'offset': $('.publication').length
+                'offset': $('.post').length
             },
             success: function(data, textStatus) {
                 if (textStatus === 'success') {
                     if (data) {
-                        $('#publications').append(data);
+                        $('#posts').append(data);
                         alreadyLoad = false;
                         minimize();
                     }
@@ -60,8 +60,8 @@ $(document).ready(function() {
     }
 
     function minimize() {
-        $text.each(function(index, element) {
-            if ($(element).children('.publication__body__text__hide').length > 0) {
+        $('.post__body__text').each(function(index, element) {
+            if ($(element).children('.post__body__text__hide').length > 0) {
                 $(element).css('cursor', 'pointer');
             }
         });
