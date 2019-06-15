@@ -37,7 +37,7 @@ $(document).ready(function() {
             success: function(data, textStatus) {
                 if (textStatus === 'success') {
                     if (data) {
-                        $('#publications').prepend(data);
+                        $('#posts').prepend(data);
                         minimize();
                         clear();
                         $button.text('Поделиться');
