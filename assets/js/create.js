@@ -64,6 +64,7 @@ $(document).ready(function() {
             .attr('rows', 1)
             .css('height', '');
         $button.css('display', 'none');
+        $('#empty').remove();
     }
 
 });
