@@ -130,9 +130,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string $fullName
+     * @param string|null $fullName
      */
-    public function setFullName(string $fullName): void
+    public function setFullName(?string $fullName): void
     {
         $this->fullName = $fullName;
     }
@@ -146,9 +146,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string $about
+     * @param string|null $about
      */
-    public function setAbout(string $about): void
+    public function setAbout(?string $about): void
     {
         $this->about = $about;
     }

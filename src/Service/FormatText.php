@@ -8,7 +8,7 @@ class FormatText
      * @param string $nickname
      * @return string
      */
-    public function formatNickname(string $nickname)
+    public function formatNickname(string $nickname): string
     {
         return htmlentities(strtolower($nickname));
     }
@@ -17,8 +17,12 @@ class FormatText
      * @param string $about
      * @return string
      */
-    public function formatAbout(string $about)
+    public function formatAbout(?string $about): ?string
     {
+        if (!$about) {
+            return null;
+        }
+
         $aboutToArray = explode(PHP_EOL, $about);
         $resultArray = [];
 
