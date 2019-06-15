@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="{{ asset('public/build/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
@@ -10,7 +12,6 @@
               crossorigin="anonymous">
     </head>
     <body>
-        {% include 'navigator.html.twig' %}
         {% block body %}{% endblock %}
         <script src="{{ asset('public/build/app.js') }}"></script>
     </body>

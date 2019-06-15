@@ -3,17 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Serializable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("nickname", message="Пользователь с таким именем уже существует")
  */
-class User implements UserInterface
+class User implements UserInterface, Serializable
 {
     /**
      * @var string
@@ -239,5 +239,19 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         return null;
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->nickname,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list($this->id, $this->nickname, $this->password) = unserialize($serialized);
     }
 }

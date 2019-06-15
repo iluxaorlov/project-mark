@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ user.nickname }}{% endblock %}
+{% block title %}{{ user.nickname }} • Mark{% endblock %}
 
 {% block body %}
+    {% include 'navigator.html.twig' %}
+
     <div id="container">
         <div id="profile">
             <h1 id="profile__login">{{ user.nickname }}</h1>
@@ -10,7 +12,7 @@
                 <h2 id="profile__name">{{ user.fullname }}</h2>
             {% endif %}
             {% if user.about %}
-                <p id="profile__about">{{ user.about }}</p>
+                <p id="profile__about">{{ user.about|raw }}</p>
             {% endif %}
             <div id="profile__detail">
                 <a class="profile__detail__item" href="#">

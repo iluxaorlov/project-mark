@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Войти{% endblock %}
+{% block title %}Войти • Mark{% endblock %}
 
 {% block body %}
-    <h1>Войти</h1>
-    <form action="{{ path('login') }}" method="post">
-        <input type="text" name="_username" value="{{ last_username }}">
-        <input type="text" name="_password">
-        <button type="submit">Войти</button>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    </form>
+    <header>
+        <img id="logotype" src="{{ asset('public/img/logo.png') }}"></div>
+    </header>
+    <main>
+        <form id="register" method="post">
+            <input class="nickname" type="text" name="_username" value="{{ last_username }}" placeholder="Имя пользователя">
+            <input class="password" type="password" name="_password" placeholder="Пароль">
+            <input type="hidden" name="_csrf_token", value="{{ csrf_token('authenticate') }}">
+            <button class="submit" type="submit">Войти</button>
+        </form>
+        <p class="undertext">Ещё нет аккаунта? <a class="link" href="{{ path('register') }}">Регистрация</a></p>
+        {% if error %}
+            <p class="error">Ошибка авторизации</p>
+        {% endif %}
+    </main>
 {% endblock %}

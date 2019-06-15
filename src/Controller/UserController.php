@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FormatText;
 
 class UserController extends AbstractController
 {
@@ -72,7 +73,7 @@ class UserController extends AbstractController
      * @Route("/{nickname}/edit", name="edit")
      * @IsGranted("ROLE_USER")
      */
-    public function edit(User $user, Request $request)
+    public function edit(User $user, Request $request, FormatText $formatText)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -81,15 +82,18 @@ class UserController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(UserType::class, $currentUser);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setNickname($formatText->formatNickname($form->get('nickname')->getData()));
+            $user->setAbout($formatText->formatAbout($form->get('about')->getData()));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
             return $this->redirectToRoute('view', [
-                'nickname' => $currentUser->getNickname()
+                'nickname' => $user->getNickname()
             ]);
         }
 

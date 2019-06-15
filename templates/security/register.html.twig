@@ -1,12 +1,41 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block form_errors %}
+    {% if errors %}
+        {% for error in errors %}
+            <p class="error">{{ error.message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
 {% block title %}Регистрация{% endblock %}
 
 {% block body %}
-    <h1>Регистрация</h1>
-    {{ form_start(form) }}
-        {{ form_row(form.nickname) }}
-        {{ form_row(form.password) }}
-        <button type="submit">Регистрация</button>
-    {{ form_end(form) }}
+    <header>
+        <img id="logotype" src="{{ asset('public/img/logo.png') }}"></div>
+    </header>
+    <main>
+        {{ form_start(form, {'attr': {
+            'id': 'register'
+        }}) }}
+        {{ form_widget(form.nickname, {'attr': {
+            'class': 'nickname',
+            'placeholder':'Имя пользователя'
+        }}) }}
+        {{ form_widget(form.password.first, {'attr': {
+            'class': 'password',
+            'placeholder':'Пароль'
+        }}) }}
+        {{ form_widget(form.password.second, {'attr': {
+            'class': 'confirm',
+            'placeholder':'Подтвердите пароль'
+        }}) }}
+        <button class="submit" type="submit">Регистрация</button>
+        <p class="undertext">Уже есть аккаунт? <a class="link" href="{{ path('login') }}">Войти</a></p>
+        {{ form_errors(form.nickname) }}
+        {{ form_errors(form.password.first) }}
+        {{ form_end(form) }}
+    </main>
 {% endblock %}

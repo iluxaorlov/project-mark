@@ -11,11 +11,12 @@ security:
                 property: 'nickname'
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+#        dev:
+#            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
         main:
-            anonymous: true
+            anonymous: ~
+
             form_login:
                 login_path: login
                 check_path: login
@@ -26,6 +27,12 @@ security:
             logout:
                 path: logout
                 target: login
+
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 31536000
+                path: /
+                always_remember_me: true
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
