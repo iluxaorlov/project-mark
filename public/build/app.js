@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
+eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
 
 /***/ }),
 
@@ -149,6 +149,17 @@ eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.post__body__text').each(function (index, element) {\n    if ($(element).children('.post__body__text__hide').length > 0) {\n      $(element).css('cursor', 'pointer');\n    }\n  });\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__body__text')) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        var $text = $(element).children('.post__body__text__hide').html();\n        $(element).children('.post__body__text__hide').remove();\n        $(element).children('.post__body__text__show').remove();\n        $(element).html($(element).html() + $text);\n        $(element).css('cursor', '');\n      }\n    }\n\n    if ($(element).hasClass('post__body__text__show')) {\n      $(element).parent().click();\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/minimize.js?");
+
+/***/ }),
+
+/***/ "./assets/js/scroll.js":
+/*!*****************************!*\
+  !*** ./assets/js/scroll.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.profile__detail__item').filter(':first').on('click', function (event) {\n    event.preventDefault();\n    var $scrollTop = $('#posts').offset().top - 64;\n    $('html, body').animate({\n      scrollTop: $scrollTop\n    }, 250);\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/scroll.js?");
 
 /***/ }),
 

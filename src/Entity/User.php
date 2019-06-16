@@ -29,7 +29,8 @@ class User implements UserInterface, Serializable
      *
      * @ORM\Column(type="string", nullable=false)
      * @Assert\Regex(pattern="/[^register|^login|^logout|^edit|^create]/", message="Пользователь с таким именем уже существует")
-     * @Assert\Regex(pattern="/[a-zA-Z0-9]+/", message="Имя пользователя должно содержать только латинские буквы или цифры")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Имя пользователя должно содержать только латинские буквы или цифры")
+     * @Assert\Length(max="12", maxMessage="Имя пользователя должно содержать не более {{ limit }} символов")
      * @Assert\NotBlank(message="Введите имя пользователя")
      */
     private $nickname;

@@ -5,3 +5,4 @@ require('../js/edit.js');
 require('../js/follow.js');
 require('../js/loading.js');
 require('../js/minimize.js');
+require('../js/scroll.js');
