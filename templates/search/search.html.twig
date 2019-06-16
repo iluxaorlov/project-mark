@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Поиск • Mark{% endblock %}
+
+{% block body %}
+    {% include 'navigator.html.twig' %}
+
+    <div id="container">
+        <input id="search" type="text" placeholder="Введите запрос..." autocomplete="off" autofocus>
+        <div id="results"></div>
+    </div>
+{% endblock %}

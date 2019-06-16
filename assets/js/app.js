@@ -6,3 +6,4 @@ require('../js/follow.js');
 require('../js/loading.js');
 require('../js/minimize.js');
 require('../js/scroll.js');
+require('../js/search.js');

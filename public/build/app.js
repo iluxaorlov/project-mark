@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
+eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n__webpack_require__(/*! ../js/search.js */ \"./assets/js/search.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
 
 /***/ }),
 
@@ -160,6 +160,17 @@ eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.profile__detail__item').filter(':first').on('click', function (event) {\n    event.preventDefault();\n    var $scrollTop = $('#posts').offset().top - 64;\n    $('html, body').animate({\n      scrollTop: $scrollTop\n    }, 250);\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/scroll.js?");
+
+/***/ }),
+
+/***/ "./assets/js/search.js":
+/*!*****************************!*\
+  !*** ./assets/js/search.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var timeout;\n  $('#search').on('input', function () {\n    clearTimeout(timeout);\n\n    if ($(this).val().trim()) {\n      timeout = setTimeout(search, 1000);\n    } else {\n      $('#results').html('');\n    }\n  });\n\n  function search() {\n    $.ajax({\n      type: 'POST',\n      url: '/search',\n      data: {\n        'query': $('#search').val()\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            if ($('#search').val().trim()) {\n              $('#results').html(data);\n            } else {\n              $('#results').html('');\n            }\n          }\n        } else {\n          $('#results').html('<p id=\"empty\">Ничего не найдено</p>');\n        }\n      }\n    });\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/search.js?");
 
 /***/ }),
 
