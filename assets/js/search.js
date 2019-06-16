@@ -29,7 +29,11 @@ $(document).ready(function() {
                         }
                     }
                 } else {
-                    $('#results').html('<p id="empty">Ничего не найдено</p>');
+                    if ($('#search').val().trim()) {
+                        $('#results').html('<p id="empty">Ничего не найдено</p>');
+                    } else {
+                        $('#results').html('');
+                    }
                 }
             }
         });
