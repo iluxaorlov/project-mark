@@ -9,18 +9,57 @@
     .post__head
       position: relative
       display: flex
-      padding: 16px
       border-bottom: 1px solid $bc
 
       .post__head__user
         font-size: 16px
+        padding: 16px
         text-decoration: none
         color: $mc
 
       .post__head__date
+        padding: 16px 0
         font-size: 16px
-        padding-left: 8px
         color: $bc
+
+      .post__head__menu
+        position: absolute
+        right: 0
+
+        &:hover .post__head__menu__list
+          visibility: visible
+          opacity: 1
+
+        .post__head__menu__button
+          position: absolute
+          right: 0
+          font-size: 19px
+          padding: 16px
+          border: none
+          background: none
+          cursor: pointer
+          width: 51px
+          display: flex
+          justify-content: center
+          align-items: center
+          color: $bc
+
+        .post__head__menu__list
+          visibility: hidden
+          opacity: 0
+          position: absolute
+          right: 16px
+          top: 16px
+          white-space: nowrap
+          background-color: #ffffff
+          border-radius: 4px
+          cursor: pointer
+          box-shadow: 0 0 8px 0 rgba(#000000, 0.5)
+          transition: all 250ms linear
+
+          .post__head__menu__list__delete
+            font-size: 16px
+            padding: 16px
 
     .post__body
       padding: 16px 16px 16px 16px

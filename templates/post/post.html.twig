@@ -1,8 +1,16 @@
 {% for post in posts %}
-    <div class="post">
+    <div class="post" id="{{ post.id }}">
         <div class="post__head">
             <a class="post__head__user" href="{{ path('view', {'nickname': post.user.nickname}) }}">{{ post.user.nickname }}</a>
             <p class="post__head__date">{{ post.createdAt|date('d.m.Y') }}</p>
+            {% if post.user == app.user %}
+                <div class="post__head__menu">
+                    <button class="post__head__menu__button"><i class="fas fa-ellipsis-h"></i></button>
+                    <div class="post__head__menu__list">
+                        <div class="post__head__menu__list__delete">Удалить публикацию</div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="post__body">
             <p class="post__body__text">{{ post.text|cut|raw }}</p>

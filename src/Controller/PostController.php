@@ -29,6 +29,7 @@ class PostController extends AbstractController
      * @return Response
      *
      * @Route("/{nickname}/create")
+     * @IsGranted("ROLE_USER")
      */
     public function create(User $user, Request $request, PostRepository $postRepository, FormatText $formatText)
     {
@@ -64,5 +65,33 @@ class PostController extends AbstractController
         return $this->render('post/post.html.twig', [
             'posts' => $posts
         ]);
+    }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/{id}/delete", name="delete")
+     * @IsGranted("ROLE_USER")
+     */
+    public function delete(Post $post, Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+
+        $currentUser = $this->getUser();
+        $postUser = $post->getUser();
+
+        if ($currentUser !== $postUser) {
+            throw new NotFoundHttpException();
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($post);
+        $entityManager->flush();
+
+        return new Response();
     }
 }

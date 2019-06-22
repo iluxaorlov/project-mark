@@ -73,10 +73,10 @@ class UserController extends AbstractController
      * @param FormatText $formatText
      * @return Response
      *
-     * @Route("/{nickname}/edit", name="edit")
+     * @Route("/{nickname}/settings", name="settings")
      * @IsGranted("ROLE_USER")
      */
-    public function edit(User $user, Request $request, FormatText $formatText, UserRepository $userRepository)
+    public function settings(User $user, Request $request, FormatText $formatText, UserRepository $userRepository)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -105,7 +105,7 @@ class UserController extends AbstractController
             $user->setNickname(self::$lastNickname);
         }
 
-        return $this->render('user/edit.html.twig', [
+        return $this->render('user/settings.html.twig', [
             'form' => $form->createView()
         ]);
     }

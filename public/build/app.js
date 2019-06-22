@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n__webpack_require__(/*! ../js/search.js */ \"./assets/js/search.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
+eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/delete.js */ \"./assets/js/delete.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n__webpack_require__(/*! ../js/search.js */ \"./assets/js/search.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
 
 /***/ }),
 
@@ -105,6 +105,17 @@ eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var $text = $('#profile__create__text');\n  var $button = $('#profile__create__button');\n  $text.on('focus', function () {\n    $(this).attr('rows', 3);\n    $button.css('display', 'flex');\n  });\n  $text.on('blur', function () {\n    if (!$(this).val()) {\n      $(this).attr('rows', 1);\n      $(this).css('height', '');\n      $button.css('display', 'none');\n    }\n  });\n  $text.on('input', function () {\n    $(this).css('height', 57 + 'px');\n    $(this).css('height', this.scrollHeight - 32 + 'px');\n  });\n  $button.on('click', function () {\n    if (document.getElementById('load')) {\n      return;\n    }\n\n    $(this).html('<i id=\"load\" class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n    $.ajax({\n      type: 'post',\n      url: window.location.pathname + '/create',\n      data: {\n        'text': $text.val()\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            $('#posts').prepend(data);\n            minimize();\n            clear();\n            $button.text('Поделиться');\n            document.getElementsByClassName('profile__detail__item__count')[0].innerText++;\n          }\n        } else {\n          $button.text('Поделиться');\n        }\n      }\n    });\n  });\n\n  function minimize() {\n    $('.post__body__text').each(function (index, element) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        $(element).css('cursor', 'pointer');\n      }\n    });\n  }\n\n  function clear() {\n    $text.val('').attr('rows', 1).css('height', '');\n    $button.css('display', 'none');\n    $('#empty').remove();\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/create.js?");
+
+/***/ }),
+
+/***/ "./assets/js/delete.js":
+/*!*****************************!*\
+  !*** ./assets/js/delete.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__head__menu__list__delete')) {\n      event.preventDefault();\n      var $post = $(element).parent().parent().parent().parent();\n      $.ajax({\n        type: 'POST',\n        url: '/' + $post.attr('id') + '/delete',\n        success: function success() {\n          document.getElementsByClassName('profile__detail__item__count')[0].innerText--;\n          $post.fadeOut(250, 'linear', function () {\n            $(this).remove();\n\n            if (document.getElementsByClassName('post').length < 1) {\n              $('#posts').html('<p id=\"empty\">Записи не найдены</p>');\n            }\n          });\n        }\n      });\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/delete.js?");
 
 /***/ }),
 
