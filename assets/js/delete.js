@@ -4,17 +4,13 @@ $(document).ready(function() {
         let element = event.target;
 
         if ($(element).hasClass('post__head__menu__list__delete')) {
-            event.preventDefault();
-
-            let $post = $(element).parent().parent().parent().parent();
-
             $.ajax({
-                type: 'POST',
-                url: '/' + $post.attr('id') + '/delete',
+                type: 'post',
+                url: '/' + $(element).parents('.post').attr('id') + '/delete',
                 success: () => {
                     document.getElementsByClassName('profile__detail__item__count')[0].innerText--;
 
-                    $post.fadeOut(250, 'linear', function() {
+                    $(element).parents('.post').fadeOut(250, 'linear', function() {
                         $(this).remove();
 
                         if (document.getElementsByClassName('post').length < 1) {

@@ -15,5 +15,8 @@
         <div class="post__body">
             <p class="post__body__text">{{ post.text|cut|raw }}</p>
         </div>
+        <div class="post__foot">
+            {% include 'post/like.html.twig' %}
+        </div>
     </div>
 {% endfor %}

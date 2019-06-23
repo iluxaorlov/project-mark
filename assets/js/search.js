@@ -8,7 +8,7 @@ $(document).ready(function() {
         if ($(this).val().trim()) {
             timeout = setTimeout(search, 1000);
         } else {
-            $('#results').html('');
+            $('#users').html('');
         }
     });
 
@@ -23,16 +23,16 @@ $(document).ready(function() {
                 if (textStatus === 'success') {
                     if (data) {
                         if ($('#search').val().trim()) {
-                            $('#results').html(data);
+                            $('#users').html(data);
                         } else {
-                            $('#results').html('');
+                            $('#users').html('');
                         }
                     }
                 } else {
                     if ($('#search').val().trim()) {
-                        $('#results').html('<p id="empty">Ничего не найдено</p>');
+                        $('#users').html('<p id="empty">Ничего не найдено</p>');
                     } else {
-                        $('#results').html('');
+                        $('#users').html('');
                     }
                 }
             }

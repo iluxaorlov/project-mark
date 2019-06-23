@@ -1,0 +1,22 @@
+{% if not app.user %}
+    <a class="post__foot__like" href="{{ path('login') }}">
+        <i class="post__foot__like__icon far fa-heart"></i>
+        {% if (post.likes.count > 0) %}
+            <p class="post__foot__like__count">{{ post.likes.count }}</p>
+        {% endif %}
+    </a>
+{% elseif post.likes.contains(app.user) %}
+    <button class="post__foot__unlike" value="{{ post.id }}">
+        <i class="post__foot__unlike__icon fas fa-heart"></i>
+        {% if (post.likes.count > 0) %}
+            <p class="post__foot__unlike__count">{{ post.likes.count }}</p>
+        {% endif %}
+    </button>
+{% else %}
+    <button class="post__foot__like" value="{{ post.id }}">
+        <i class="post__foot__like__icon far fa-heart"></i>
+        {% if (post.likes.count > 0) %}
+            <p class="post__foot__like__count">{{ post.likes.count }}</p>
+        {% endif %}
+    </button>
+{% endif %}

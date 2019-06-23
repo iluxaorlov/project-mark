@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -126,7 +127,7 @@ class Post
     /**
      * @return ArrayCollection
      */
-    public function getLikes(): ArrayCollection
+    public function getLikes(): PersistentCollection
     {
         return $this->likes;
     }

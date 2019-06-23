@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
-    let alreadyLoad = false;
+    let inProgress = false;
 
     $(window).on('scroll', function() {
         if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {
             if ($('#posts').length > 0) {
-                if (!alreadyLoad) {
+                if (inProgress === false) {
                     loadPublications();
                 }
             }
 
             if ($('#users').length > 0) {
-                if (!alreadyLoad) {
+                if (inProgress === false) {
                     loadUsers();
                 }
             }
@@ -19,7 +19,7 @@ $(document).ready(function() {
     });
 
     function loadPublications() {
-        alreadyLoad = true;
+        inProgress = true;
 
         $.ajax({
             type: 'post',
@@ -31,7 +31,7 @@ $(document).ready(function() {
                 if (textStatus === 'success') {
                     if (data) {
                         $('#posts').append(data);
-                        alreadyLoad = false;
+                        inProgress = false;
                         minimize();
                     }
                 }
@@ -40,11 +40,11 @@ $(document).ready(function() {
     }
 
     function loadUsers() {
-        alreadyLoad = true;
+        inProgress = true;
 
         $.ajax({
             type: 'post',
-            url: window.location.pathname.replace(/\/$/, '') + '/load',
+            url: window.location.pathname,
             data: {
                 'offset': $('.user').length
             },
@@ -52,7 +52,7 @@ $(document).ready(function() {
                 if (textStatus === 'success') {
                     if (data) {
                         $('#users').append(data);
-                        alreadyLoad = false;
+                        inProgress = false;
                     }
                 }
             }
