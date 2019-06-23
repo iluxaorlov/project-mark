@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     if (document.getElementById('user_about')) {
-        $('#user_about').css('height', 57 + 'px');
+        $('#user_about').css('height', '');
         $('#user_about').css('height', document.getElementById('user_about').scrollHeight - 32 + 'px');
     }
 

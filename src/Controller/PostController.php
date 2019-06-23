@@ -34,6 +34,7 @@ class PostController extends AbstractController
     public function create(User $user, Request $request, PostRepository $postRepository, FormatText $formatText)
     {
         if (!$request->isXmlHttpRequest()) {
+            // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
 
@@ -46,7 +47,7 @@ class PostController extends AbstractController
 
         $text = $request->get('text');
 
-        if (!$text) {
+        if ($text === null) {
             throw new HttpException(204);
         }
 
@@ -58,10 +59,12 @@ class PostController extends AbstractController
         $entityManager->persist($post);
         $entityManager->flush();
 
+        // find last insert post
         $posts = $postRepository->findBy([
             'id' => $post->getId()
         ]);
 
+        // return response with last insert post
         return $this->render('post/post.html.twig', [
             'posts' => $posts
         ]);
@@ -78,6 +81,7 @@ class PostController extends AbstractController
     public function delete(Post $post, Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
+            // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
 
@@ -92,6 +96,7 @@ class PostController extends AbstractController
         $entityManager->remove($post);
         $entityManager->flush();
 
+        // return response with code 200
         return new Response();
     }
 }

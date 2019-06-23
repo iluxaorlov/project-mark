@@ -1,11 +1,12 @@
 require('../sass/app.sass');
 
-require('../js/create.js');
-require('../js/delete.js');
-require('../js/edit.js');
-require('../js/follow.js');
-require('../js/like.js');
+require('../js/followUnfollow.js');
+require('../js/likeUnlike.js');
 require('../js/loading.js');
-require('../js/minimize.js');
-require('../js/scroll.js');
-require('../js/search.js');
+require('../js/searching.js');
+
+require('../js/postCreate.js');
+require('../js/postDelete.js');
+require('../js/postsMinimize.js');
+require('../js/settingsUserAboutAutosize.js');
+require('../js/userScrollToPosts.js');

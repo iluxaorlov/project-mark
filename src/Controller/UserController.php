@@ -18,7 +18,7 @@ use App\Service\FormatText;
 class UserController extends AbstractController
 {
     private const LIMIT = 64;
-    private static $lastNickname = null;
+    private static $lastNickname;
 
     /**
      * @param User $user
@@ -30,10 +30,12 @@ class UserController extends AbstractController
      */
     public function view(User $user, Request $request, PostRepository $postRepository)
     {
+        // post request
         if ($request->isXmlHttpRequest()) {
             $offset = $request->get('offset');
 
             if (!$offset) {
+                // if there's no offset then return response with code 400
                 throw new HttpException(400);
             }
 
@@ -45,21 +47,26 @@ class UserController extends AbstractController
             );
 
             if (!$posts) {
+                // if there's no user's posts then return response with code 204
                 throw new HttpException(204);
             }
 
+            // response with list of user's posts
             return $this->render('post/post.html.twig', [
                 'posts' => $posts
             ]);
         }
 
+        // count all user's posts
         $countPosts = $postRepository->countUserPosts($user);
+
         $posts = $postRepository->findBy(
             ['user' => $user],
             ['createdAt' => 'DESC'],
-            self::LIMIT
+            self::LIMIT,
         );
 
+        // render user's page
         return $this->render('user/view.html.twig', [
             'user' => $user,
             'countPosts' => $countPosts,
@@ -76,7 +83,7 @@ class UserController extends AbstractController
      * @Route("/{nickname}/settings", name="settings")
      * @IsGranted("ROLE_USER")
      */
-    public function settings(User $user, Request $request, FormatText $formatText, UserRepository $userRepository)
+    public function settings(User $user, Request $request, FormatText $formatText)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -86,6 +93,7 @@ class UserController extends AbstractController
         }
 
         if (!self::$lastNickname) {
+            // saving current user nickname
             self::$lastNickname = $currentUser->getNickname();
         }
 
@@ -93,18 +101,22 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // if form is valid then save changes
             $user->setNickname($formatText->formatNickname($form->get('nickname')->getData()));
             $user->setAbout($formatText->formatText($form->get('about')->getData()));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
+            // and redirect to user's page
             return $this->redirectToRoute('view', [
                 'nickname' => $user->getNickname()
             ]);
         } else {
+            // else restore user nickname
             $user->setNickname(self::$lastNickname);
         }
 
+        // render settings page
         return $this->render('user/settings.html.twig', [
             'form' => $form->createView()
         ]);

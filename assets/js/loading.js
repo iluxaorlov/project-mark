@@ -5,66 +5,48 @@ $(document).ready(function() {
     $(window).on('scroll', function() {
         if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {
             if ($('#posts').length > 0) {
-                if (inProgress === false) {
-                    loadPublications();
-                }
+                loading($('#posts'), $('.post'));
             }
 
             if ($('#users').length > 0) {
-                if (inProgress === false) {
-                    loadUsers();
-                }
+                loading($('#users'), $('.user'));
             }
         }
     });
 
-    function loadPublications() {
-        inProgress = true;
+    function loading($container, $items) {
+        if (inProgress === false) {
+            inProgress = true;
 
-        $.ajax({
-            type: 'post',
-            url: window.location.pathname,
-            data: {
-                'offset': $('.post').length
-            },
-            success: function(data, textStatus) {
-                if (textStatus === 'success') {
-                    if (data) {
-                        $('#posts').append(data);
-                        inProgress = false;
-                        minimize();
+            $.ajax({
+                type: 'post',
+                url: window.location.pathname,
+                data: {
+                    'offset': $items.length
+                },
+                success: (data, textStatus) => {
+                    if (textStatus === 'success') {
+                        if (data) {
+                            $container.append(data);
+                            inProgress = false;
+
+                            if ($($container).attr('id') === 'posts') {
+                                // minimize long posts
+                                minimize();
+                            }
+                        }
                     }
                 }
-            }
-        });
-    }
+            });
+        }
 
-    function loadUsers() {
-        inProgress = true;
-
-        $.ajax({
-            type: 'post',
-            url: window.location.pathname,
-            data: {
-                'offset': $('.user').length
-            },
-            success: function(data, textStatus) {
-                if (textStatus === 'success') {
-                    if (data) {
-                        $('#users').append(data);
-                        inProgress = false;
-                    }
+        function minimize() {
+            $('.post__body__text').each((index, element) => {
+                if ($(element).children('.post__body__text__hide').length > 0) {
+                    $(element).css('cursor', 'pointer');
                 }
-            }
-        });
-    }
-
-    function minimize() {
-        $('.post__body__text').each(function(index, element) {
-            if ($(element).children('.post__body__text__hide').length > 0) {
-                $(element).css('cursor', 'pointer');
-            }
-        });
+            });
+        }
     }
 
 });

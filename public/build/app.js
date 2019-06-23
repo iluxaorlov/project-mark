@@ -93,62 +93,29 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/create.js */ \"./assets/js/create.js\");\n\n__webpack_require__(/*! ../js/delete.js */ \"./assets/js/delete.js\");\n\n__webpack_require__(/*! ../js/edit.js */ \"./assets/js/edit.js\");\n\n__webpack_require__(/*! ../js/follow.js */ \"./assets/js/follow.js\");\n\n__webpack_require__(/*! ../js/like.js */ \"./assets/js/like.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/minimize.js */ \"./assets/js/minimize.js\");\n\n__webpack_require__(/*! ../js/scroll.js */ \"./assets/js/scroll.js\");\n\n__webpack_require__(/*! ../js/search.js */ \"./assets/js/search.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
+eval("__webpack_require__(/*! ../sass/app.sass */ \"./assets/sass/app.sass\");\n\n__webpack_require__(/*! ../js/followUnfollow.js */ \"./assets/js/followUnfollow.js\");\n\n__webpack_require__(/*! ../js/likeUnlike.js */ \"./assets/js/likeUnlike.js\");\n\n__webpack_require__(/*! ../js/loading.js */ \"./assets/js/loading.js\");\n\n__webpack_require__(/*! ../js/searching.js */ \"./assets/js/searching.js\");\n\n__webpack_require__(/*! ../js/postCreate.js */ \"./assets/js/postCreate.js\");\n\n__webpack_require__(/*! ../js/postDelete.js */ \"./assets/js/postDelete.js\");\n\n__webpack_require__(/*! ../js/postsMinimize.js */ \"./assets/js/postsMinimize.js\");\n\n__webpack_require__(/*! ../js/settingsUserAboutAutosize.js */ \"./assets/js/settingsUserAboutAutosize.js\");\n\n__webpack_require__(/*! ../js/userScrollToPosts.js */ \"./assets/js/userScrollToPosts.js\");\n\n//# sourceURL=webpack:///./assets/js/app.js?");
 
 /***/ }),
 
-/***/ "./assets/js/create.js":
-/*!*****************************!*\
-  !*** ./assets/js/create.js ***!
-  \*****************************/
+/***/ "./assets/js/followUnfollow.js":
+/*!*************************************!*\
+  !*** ./assets/js/followUnfollow.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var $text = $('#profile__create__text');\n  var $button = $('#profile__create__button');\n  $text.on('focus', function () {\n    $(this).attr('rows', 3);\n    $button.css('display', 'flex');\n  });\n  $text.on('blur', function () {\n    if (!$(this).val()) {\n      $(this).attr('rows', 1);\n      $(this).css('height', '');\n      $button.css('display', 'none');\n    }\n  });\n  $text.on('input', function () {\n    $(this).css('height', 57 + 'px');\n    $(this).css('height', this.scrollHeight - 32 + 'px');\n  });\n  $button.on('click', function () {\n    if (document.getElementById('load')) {\n      return;\n    }\n\n    $(this).html('<i id=\"load\" class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n    $.ajax({\n      type: 'post',\n      url: window.location.pathname + '/create',\n      data: {\n        'text': $text.val()\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            $('#posts').prepend(data);\n            minimize();\n            clear();\n            $button.text('Поделиться');\n            document.getElementsByClassName('profile__detail__item__count')[0].innerText++;\n          }\n        } else {\n          $button.text('Поделиться');\n        }\n      }\n    });\n  });\n\n  function minimize() {\n    $('.post__body__text').each(function (index, element) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        $(element).css('cursor', 'pointer');\n      }\n    });\n  }\n\n  function clear() {\n    $text.val('').attr('rows', 1).css('height', '');\n    $button.css('display', 'none');\n    $('#empty').remove();\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/create.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n  $('#profile__action').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).attr('id') === 'follow') {\n      followUnfollow.call(element, 'follow');\n    }\n\n    if ($(element).attr('id') === 'unfollow') {\n      followUnfollow.call(element, 'unfollow');\n    }\n  });\n\n  function followUnfollow(action) {\n    if (inProgress === false) {\n      inProgress = true; // adding loading indicator\n\n      $(this).html('<i class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n      $.ajax({\n        type: 'post',\n        url: window.location.pathname + '/' + action,\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            if (data) {\n              // adding action button from response\n              $('#profile__action').html(data);\n\n              if (action === 'follow') {\n                // increment number of followers\n                document.getElementsByClassName('profile__detail__item__count')[2].innerText++;\n              }\n\n              if (action === 'unfollow') {\n                // decrement number of followers\n                document.getElementsByClassName('profile__detail__item__count')[2].innerText--;\n              }\n\n              inProgress = false;\n            }\n          }\n        }\n      });\n    }\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/followUnfollow.js?");
 
 /***/ }),
 
-/***/ "./assets/js/delete.js":
-/*!*****************************!*\
-  !*** ./assets/js/delete.js ***!
-  \*****************************/
+/***/ "./assets/js/likeUnlike.js":
+/*!*********************************!*\
+  !*** ./assets/js/likeUnlike.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__head__menu__list__delete')) {\n      $.ajax({\n        type: 'post',\n        url: '/' + $(element).parents('.post').attr('id') + '/delete',\n        success: function success() {\n          document.getElementsByClassName('profile__detail__item__count')[0].innerText--;\n          $(element).parents('.post').fadeOut(250, 'linear', function () {\n            $(this).remove();\n\n            if (document.getElementsByClassName('post').length < 1) {\n              $('#posts').html('<p id=\"empty\">Записи не найдены</p>');\n            }\n          });\n        }\n      });\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/delete.js?");
-
-/***/ }),
-
-/***/ "./assets/js/edit.js":
-/*!***************************!*\
-  !*** ./assets/js/edit.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  if (document.getElementById('user_about')) {\n    $('#user_about').css('height', 57 + 'px');\n    $('#user_about').css('height', document.getElementById('user_about').scrollHeight - 32 + 'px');\n  }\n\n  $('#user_about').on('input', function () {\n    $(this).css('height', 57 + 'px');\n    $(this).css('height', this.scrollHeight - 32 + 'px');\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/edit.js?");
-
-/***/ }),
-
-/***/ "./assets/js/follow.js":
-/*!*****************************!*\
-  !*** ./assets/js/follow.js ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  function follow() {\n    $('#follow').on('click', function () {\n      if (document.getElementById('load')) {\n        return;\n      }\n\n      $(this).html('<i id=\"load\" class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n      $.ajax({\n        type: 'post',\n        url: window.location.pathname + '/follow',\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            if (data) {\n              $('#profile__action').html(data);\n              document.getElementsByClassName('profile__detail__item__count')[2].innerText++;\n              unfollow();\n            }\n          }\n        }\n      });\n    });\n  }\n\n  function unfollow() {\n    $('#unfollow').on('click', function () {\n      if (document.getElementById('load')) {\n        return;\n      }\n\n      $(this).html('<i id=\"load\" class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n      $.ajax({\n        type: 'post',\n        url: window.location.pathname + '/unfollow',\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            if (data) {\n              $('#profile__action').html(data);\n              document.getElementsByClassName('profile__detail__item__count')[2].innerText--;\n              follow();\n            }\n          }\n        }\n      });\n    });\n  }\n\n  follow();\n  unfollow();\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/follow.js?");
-
-/***/ }),
-
-/***/ "./assets/js/like.js":
-/*!***************************!*\
-  !*** ./assets/js/like.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n\n  (function like() {\n    $('#posts').on('click', function (event) {\n      var element = event.target;\n\n      if ($(element).hasClass('post__foot__like') || $(element).hasClass('post__foot__like__icon') || $(element).hasClass('post__foot__like__count')) {\n        if (inProgress === false) {\n          inProgress = true;\n          $.ajax({\n            type: 'post',\n            url: '/' + $(element).parents('.post').attr('id') + '/like',\n            success: function success(data, textStatus) {\n              if (textStatus === 'success') {\n                $(element).parents('.post__foot').html(data);\n                inProgress = false;\n              }\n            }\n          });\n        }\n      }\n    });\n  })();\n\n  (function unlike() {\n    $('#posts').on('click', function (event) {\n      var element = event.target;\n\n      if ($(element).hasClass('post__foot__unlike') || $(element).hasClass('post__foot__unlike__icon') || $(element).hasClass('post__foot__unlike__count')) {\n        if (inProgress === false) {\n          inProgress = true;\n          $.ajax({\n            type: 'post',\n            url: '/' + $(element).parents('.post').attr('id') + '/unlike',\n            success: function success(data, textStatus) {\n              if (textStatus === 'success') {\n                $(element).parents('.post__foot').html(data);\n                inProgress = false;\n              }\n            }\n          });\n        }\n      }\n    });\n  })();\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/like.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__foot__like') || $(element).hasClass('post__foot__like__icon') || $(element).hasClass('post__foot__like__count')) {\n      likeUnlike.call(element, 'like');\n    }\n\n    if ($(element).hasClass('post__foot__unlike') || $(element).hasClass('post__foot__unlike__icon') || $(element).hasClass('post__foot__unlike__count')) {\n      likeUnlike.call(element, 'unlike');\n    }\n  });\n\n  function likeUnlike(action) {\n    var _this = this;\n\n    if (inProgress === false) {\n      inProgress = true;\n      $.ajax({\n        type: 'post',\n        url: '/' + $(this).parents('.post').attr('id') + '/' + action,\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            $(_this).parents('.post__foot').html(data);\n            inProgress = false;\n          }\n        }\n      });\n    }\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/likeUnlike.js?");
 
 /***/ }),
 
@@ -159,40 +126,73 @@ eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n  $(window).on('scroll', function () {\n    if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {\n      if ($('#posts').length > 0) {\n        if (inProgress === false) {\n          loadPublications();\n        }\n      }\n\n      if ($('#users').length > 0) {\n        if (inProgress === false) {\n          loadUsers();\n        }\n      }\n    }\n  });\n\n  function loadPublications() {\n    inProgress = true;\n    $.ajax({\n      type: 'post',\n      url: window.location.pathname,\n      data: {\n        'offset': $('.post').length\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            $('#posts').append(data);\n            inProgress = false;\n            minimize();\n          }\n        }\n      }\n    });\n  }\n\n  function loadUsers() {\n    inProgress = true;\n    $.ajax({\n      type: 'post',\n      url: window.location.pathname,\n      data: {\n        'offset': $('.user').length\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            $('#users').append(data);\n            inProgress = false;\n          }\n        }\n      }\n    });\n  }\n\n  function minimize() {\n    $('.post__body__text').each(function (index, element) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        $(element).css('cursor', 'pointer');\n      }\n    });\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/loading.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n  $(window).on('scroll', function () {\n    if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {\n      if ($('#posts').length > 0) {\n        loading($('#posts'), $('.post'));\n      }\n\n      if ($('#users').length > 0) {\n        loading($('#users'), $('.user'));\n      }\n    }\n  });\n\n  function loading($container, $items) {\n    if (inProgress === false) {\n      inProgress = true;\n      $.ajax({\n        type: 'post',\n        url: window.location.pathname,\n        data: {\n          'offset': $items.length\n        },\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            if (data) {\n              $container.append(data);\n              inProgress = false;\n\n              if ($($container).attr('id') === 'posts') {\n                // minimize long posts\n                minimize();\n              }\n            }\n          }\n        }\n      });\n    }\n\n    function minimize() {\n      $('.post__body__text').each(function (index, element) {\n        if ($(element).children('.post__body__text__hide').length > 0) {\n          $(element).css('cursor', 'pointer');\n        }\n      });\n    }\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/loading.js?");
 
 /***/ }),
 
-/***/ "./assets/js/minimize.js":
-/*!*******************************!*\
-  !*** ./assets/js/minimize.js ***!
-  \*******************************/
+/***/ "./assets/js/postCreate.js":
+/*!*********************************!*\
+  !*** ./assets/js/postCreate.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.post__body__text').each(function (index, element) {\n    if ($(element).children('.post__body__text__hide').length > 0) {\n      $(element).css('cursor', 'pointer');\n    }\n  });\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__body__text')) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        var $text = $(element).children('.post__body__text__hide').html();\n        $(element).children('.post__body__text__hide').remove();\n        $(element).children('.post__body__text__show').remove();\n        $(element).html($(element).html() + $text);\n        $(element).css('cursor', '');\n      }\n    }\n\n    if ($(element).hasClass('post__body__text__show')) {\n      $(element).parent().click();\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/minimize.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var inProgress = false;\n  var $text = $('#profile__create__text');\n  var $button = $('#profile__create__button');\n  $text.on('focus', function () {\n    $(this).attr('rows', 3);\n    $button.css('display', 'flex');\n  });\n  $text.on('blur', function () {\n    if (!$(this).val()) {\n      $(this).attr('rows', 1);\n      $(this).css('height', '');\n      $button.css('display', 'none');\n    }\n  });\n  $text.on('input', function () {\n    $(this).css('height', '');\n    $(this).css('height', this.scrollHeight - 32 + 'px');\n  });\n  $button.on('click', function () {\n    if (inProgress === false) {\n      inProgress = true;\n      $(this).html('<i class=\"fas fa-spinner fa-spin\" style=\"font-size: 19px\"></i>');\n      $.ajax({\n        type: 'post',\n        url: window.location.pathname + '/create',\n        data: {\n          'text': $text.val()\n        },\n        success: function success(data, textStatus) {\n          if (textStatus === 'success') {\n            if (data) {\n              $('#empty').remove();\n              $('#posts').prepend(data);\n              minimize();\n              clear();\n              $button.text('Поделиться'); // increment number of posts\n\n              document.getElementsByClassName('profile__detail__item__count')[0].innerText++;\n            }\n          } else {\n            $button.text('Поделиться');\n          }\n        },\n        complete: function complete() {\n          inProgress = false;\n        }\n      });\n    }\n  });\n\n  function minimize() {\n    $('.post__body__text').each(function (index, element) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        $(element).css('cursor', 'pointer');\n      }\n    });\n  }\n\n  function clear() {\n    $text.val('').attr('rows', 1).css('height', '');\n    $button.css('display', 'none');\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/postCreate.js?");
 
 /***/ }),
 
-/***/ "./assets/js/scroll.js":
-/*!*****************************!*\
-  !*** ./assets/js/scroll.js ***!
-  \*****************************/
+/***/ "./assets/js/postDelete.js":
+/*!*********************************!*\
+  !*** ./assets/js/postDelete.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.profile__detail__item').filter(':first').on('click', function (event) {\n    event.preventDefault();\n    var $scrollTop = $('#posts').offset().top - 64;\n    $('html, body').animate({\n      scrollTop: $scrollTop\n    }, 250);\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/scroll.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var $posts = $('#posts');\n  $posts.on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__head__menu__list__delete')) {\n      $.ajax({\n        type: 'post',\n        url: '/' + $(element).parents('.post').attr('id') + '/delete',\n        success: function success() {\n          if (document.getElementsByClassName('profile__detail__item__count')[0]) {\n            document.getElementsByClassName('profile__detail__item__count')[0].innerText--;\n          }\n\n          $(element).parents('.post').fadeOut(250, 'linear', function () {\n            $(element).remove();\n\n            if (document.getElementsByClassName('post').length < 1) {\n              $posts.html('<p id=\"empty\">Записи не найдены</p>');\n            }\n          });\n        }\n      });\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/postDelete.js?");
 
 /***/ }),
 
-/***/ "./assets/js/search.js":
-/*!*****************************!*\
-  !*** ./assets/js/search.js ***!
-  \*****************************/
+/***/ "./assets/js/postsMinimize.js":
+/*!************************************!*\
+  !*** ./assets/js/postsMinimize.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  var timeout;\n  $('#search').on('input', function () {\n    clearTimeout(timeout);\n\n    if ($(this).val().trim()) {\n      timeout = setTimeout(search, 1000);\n    } else {\n      $('#users').html('');\n    }\n  });\n\n  function search() {\n    $.ajax({\n      type: 'POST',\n      url: '/search',\n      data: {\n        'query': $('#search').val()\n      },\n      success: function success(data, textStatus) {\n        if (textStatus === 'success') {\n          if (data) {\n            if ($('#search').val().trim()) {\n              $('#users').html(data);\n            } else {\n              $('#users').html('');\n            }\n          }\n        } else {\n          if ($('#search').val().trim()) {\n            $('#users').html('<p id=\"empty\">Ничего не найдено</p>');\n          } else {\n            $('#users').html('');\n          }\n        }\n      }\n    });\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/search.js?");
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.post__body__text').each(function (index, element) {\n    if ($(element).children('.post__body__text__hide').length > 0) {\n      $(element).css('cursor', 'pointer');\n    }\n  });\n  $('#posts').on('click', function (event) {\n    var element = event.target;\n\n    if ($(element).hasClass('post__body__text')) {\n      if ($(element).children('.post__body__text__hide').length > 0) {\n        var $text = $(element).children('.post__body__text__hide').html();\n        $(element).children('.post__body__text__hide').remove();\n        $(element).children('.post__body__text__show').remove();\n        $(element).html($(element).html() + $text);\n        $(element).css('cursor', '');\n      }\n    }\n\n    if ($(element).hasClass('post__body__text__show')) {\n      $(element).parent().click();\n    }\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/postsMinimize.js?");
+
+/***/ }),
+
+/***/ "./assets/js/searching.js":
+/*!********************************!*\
+  !*** ./assets/js/searching.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  // creating new variable for timer\n  var timer;\n  $('#search').on('input', function () {\n    // every keydown will clear the timer\n    clearTimeout(timer);\n\n    if ($(this).val().trim()) {\n      // if query is not empty then starting the timer\n      timer = setTimeout(search, 1000);\n    } else {\n      // else clear list of users\n      $('#users').html('');\n    }\n  });\n\n  function search() {\n    $.ajax({\n      type: 'post',\n      url: window.location.pathname,\n      data: {\n        'query': $('#search').val().trim()\n      },\n      success: function success(data, textStatus) {\n        if ($('#search').val().trim()) {\n          if (textStatus === 'success') {\n            if (data) {\n              // adding list of users from response\n              $('#users').html(data);\n            }\n          } else {\n            // if there is no results then show message\n            $('#users').html('<p id=\"empty\">Ничего не найдено</p>');\n          }\n        } else {\n          // if query is empty then clear list of user\n          $('#users').html('');\n        }\n      }\n    });\n  }\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/searching.js?");
+
+/***/ }),
+
+/***/ "./assets/js/settingsUserAboutAutosize.js":
+/*!************************************************!*\
+  !*** ./assets/js/settingsUserAboutAutosize.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  if (document.getElementById('user_about')) {\n    $('#user_about').css('height', '');\n    $('#user_about').css('height', document.getElementById('user_about').scrollHeight - 32 + 'px');\n  }\n\n  $('#user_about').on('input', function () {\n    $(this).css('height', 57 + 'px');\n    $(this).css('height', this.scrollHeight - 32 + 'px');\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/settingsUserAboutAutosize.js?");
+
+/***/ }),
+
+/***/ "./assets/js/userScrollToPosts.js":
+/*!****************************************!*\
+  !*** ./assets/js/userScrollToPosts.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {\n  $('.profile__detail__item').filter(':first').on('click', function (event) {\n    event.preventDefault();\n    var $scrollTop = $('#posts').offset().top - 64;\n    $('html, body').animate({\n      scrollTop: $scrollTop\n    }, 250);\n  });\n});\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\")))\n\n//# sourceURL=webpack:///./assets/js/userScrollToPosts.js?");
 
 /***/ }),
 

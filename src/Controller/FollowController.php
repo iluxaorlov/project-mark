@@ -27,19 +27,23 @@ class FollowController extends AbstractController
      */
     public function following(User $user, Request $request)
     {
+        // post request
         if ($request->isXmlHttpRequest()) {
             $offset = $request->get('offset');
 
             if (!$offset) {
+                // if there's no offset then return response with code 400
                 throw new HttpException(400);
             }
 
             $users = $user->getFollowing()->slice($offset, self::LIMIT);
 
             if (!$users) {
+                // if there's no users then return response with code 204
                 throw new HttpException(204);
             }
 
+            // return response with list of users
             return $this->render('user/user.html.twig', [
                 'users' => $users
             ]);
@@ -47,6 +51,7 @@ class FollowController extends AbstractController
 
         $users = $user->getFollowing()->slice(0, self::LIMIT);
 
+        // render following page
         return $this->render('follow/following.html.twig', [
             'users' => $users
         ]);
@@ -61,19 +66,23 @@ class FollowController extends AbstractController
      */
     public function followers(User $user, Request $request)
     {
+        // post request
         if ($request->isXmlHttpRequest()) {
             $offset = $request->get('offset');
 
             if (!$offset) {
+                // if there's no offset then return response with code 400
                 throw new HttpException(400);
             }
 
             $users = $user->getFollowers()->slice($offset, self::LIMIT);
 
             if (!$users) {
+                // if there's no users then return response with code 204
                 throw new HttpException(204);
             }
 
+            // return response with list of users
             return $this->render('user/user.html.twig', [
                 'users' => $users
             ]);
@@ -81,6 +90,7 @@ class FollowController extends AbstractController
 
         $users = $user->getFollowers()->slice(0, self::LIMIT);
 
+        // render followers page
         return $this->render('follow/followers.html.twig', [
             'users' => $users
         ]);
@@ -96,6 +106,7 @@ class FollowController extends AbstractController
     public function follow(User $userToFollow, Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
+            // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
 
@@ -109,6 +120,7 @@ class FollowController extends AbstractController
             }
         }
 
+        // return response with action button
         return $this->render('user/action.html.twig', [
             'user' => $userToFollow
         ]);
@@ -124,6 +136,7 @@ class FollowController extends AbstractController
     public function unfollow(User $userToUnfollow, Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
+            // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
 
@@ -137,6 +150,7 @@ class FollowController extends AbstractController
             }
         }
 
+        // return response with action button
         return $this->render('user/action.html.twig', [
             'user' => $userToUnfollow
         ]);

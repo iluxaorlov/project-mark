@@ -17,6 +17,7 @@ class SearchController extends AbstractController
     /**
      * @param Request $request
      * @param UserRepository $userRepository
+     * @throws HttpException
      * @return Response
      *
      * @Route("/search", name="search")
@@ -24,39 +25,29 @@ class SearchController extends AbstractController
      */
     public function search(Request $request, UserRepository $userRepository)
     {
+        // post request
         if ($request->isXmlHttpRequest()) {
-            $offset = $request->get('offset');
-
-            if (!$offset) {
-                $users = $userRepository->search(
-                    $request->get('query'),
-                    self::LIMIT,
-                );
-
-                if (!$users) {
-                    throw new HttpException(204);
-                }
-
-                return $this->render('user/user.html.twig', [
-                    'users' => $users
-                ]);
-            }
-
+            $query = $request->get('query');
+            // if request haven't offset then offset is zero
+            $offset = $request->get('offset') ?? 0;
             $users = $userRepository->search(
-                $request->get('query'),
+                $query,
                 self::LIMIT,
                 $offset
             );
 
             if (!$users) {
+                // if there's no results then return response with code 204
                 throw new HttpException(204);
             }
 
+            // return response with list of users
             return $this->render('user/user.html.twig', [
                 'users' => $users
             ]);
         }
 
+        // render search page
         return $this->render('search/search.html.twig');
     }
 }

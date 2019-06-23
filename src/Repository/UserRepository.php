@@ -25,7 +25,7 @@ class UserRepository extends ServiceEntityRepository
      * @param int $offset
      * @return array|null
      */
-    public function search(string $value, int $limit, int $offset = 0): ?array
+    public function search(string $value, int $limit, int $offset): ?array
     {
         return $this->createQueryBuilder('u')
             ->where('u.nickname LIKE :value')

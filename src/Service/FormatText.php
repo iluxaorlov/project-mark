@@ -22,17 +22,13 @@ class FormatText
      */
     public function formatText(?string $text): ?string
     {
-        if (!$text) {
-            return null;
-        }
-
         $text = trim($text);
 
-        if (!$text) {
+        if ($text === null || $text === '') {
             throw new HttpException(204);
         }
 
-        $text = preg_replace('/\n+/', "\n", $text);
+        $text = preg_replace('/\s+\n+/', "\n", $text);
         $explodeText = explode("\n", $text);
         $result = [];
 
