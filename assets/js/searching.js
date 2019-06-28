@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // creating new variable for timer
+    // creating variable for timer
     let timer;
 
     $('#search').on('input', function() {
@@ -11,7 +11,7 @@ $(document).ready(function() {
             // if query is not empty then starting the timer
             timer = setTimeout(search, 1000);
         } else {
-            // else clear list of users
+            // if query is empty then clear list of users
             $('#users').html('');
         }
     });
@@ -35,7 +35,7 @@ $(document).ready(function() {
                         $('#users').html('<p id="empty">Ничего не найдено</p>');
                     }
                 } else {
-                    // if query is empty then clear list of user
+                    // if query is empty then clear list of users
                     $('#users').html('');
                 }
             }

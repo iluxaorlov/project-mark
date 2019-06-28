@@ -4,24 +4,16 @@
     <list default="true" id="1dd6896c-121b-4588-9b65-5201ef9bbbc8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/create.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/delete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/edit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/follow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/like.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/followUnfollow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/likeUnlike.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/loading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/minimize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/scroll.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/postCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/postCreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/postDelete.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/postDelete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/postsMinimize.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/searching.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/searching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/settingsUserAboutAutosize.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/userScrollToPosts.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FollowController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LikeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LikeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/FormatText.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/FormatText.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,17 +39,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -72,11 +54,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/sass/_search.sass" />
-        <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/assets/sass/_edit.sass" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/main/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/follow/followers.html.twig" />
         <option value="$PROJECT_DIR$/templates/follow/following.html.twig" />
@@ -99,22 +76,16 @@
         <option value="$PROJECT_DIR$/assets/js/postLoading.js" />
         <option value="$PROJECT_DIR$/assets/js/userLoading.js" />
         <option value="$PROJECT_DIR$/assets/sass/_profile.sass" />
-        <option value="$PROJECT_DIR$/assets/js/postDelete.js" />
         <option value="$PROJECT_DIR$/assets/js/search.js" />
         <option value="$PROJECT_DIR$/templates/user/settings.html.twig" />
         <option value="$PROJECT_DIR$/assets/js/postsLoading.js" />
         <option value="$PROJECT_DIR$/assets/js/userUnfollow.js" />
-        <option value="$PROJECT_DIR$/assets/js/settingsUserAboutAutosize.js" />
-        <option value="$PROJECT_DIR$/assets/js/postCreate.js" />
         <option value="$PROJECT_DIR$/assets/js/postUnlike.js" />
         <option value="$PROJECT_DIR$/assets/js/postLike.js" />
         <option value="$PROJECT_DIR$/assets/js/postLikeAndUnlike.js" />
         <option value="$PROJECT_DIR$/assets/js/userFollow.js" />
-        <option value="$PROJECT_DIR$/assets/js/userFollowUnfollow.js" />
         <option value="$PROJECT_DIR$/assets/js/usersLoading.js" />
         <option value="$PROJECT_DIR$/assets/js/loadingPostsUsers.js" />
-        <option value="$PROJECT_DIR$/assets/js/loading.js" />
-        <option value="$PROJECT_DIR$/assets/js/followUnfollow.js" />
         <option value="$PROJECT_DIR$/src/Controller/FollowController.php" />
         <option value="$PROJECT_DIR$/src/Controller/LikeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/MainController.php" />
@@ -122,7 +93,18 @@
         <option value="$PROJECT_DIR$/src/Controller/PostController.php" />
         <option value="$PROJECT_DIR$/src/Controller/SearchController.php" />
         <option value="$PROJECT_DIR$/src/Controller/UserController.php" />
+        <option value="$PROJECT_DIR$/assets/js/searching.js" />
+        <option value="$PROJECT_DIR$/assets/js/followUnfollow.js" />
+        <option value="$PROJECT_DIR$/assets/js/likeUnlike.js" />
+        <option value="$PROJECT_DIR$/assets/js/postCreate.js" />
+        <option value="$PROJECT_DIR$/assets/js/postLikeUnlike.js" />
+        <option value="$PROJECT_DIR$/assets/js/settingsUserAboutAutosize.js" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
+        <option value="$PROJECT_DIR$/assets/js/userAboutAutosize.js" />
+        <option value="$PROJECT_DIR$/assets/js/loading.js" />
+        <option value="$PROJECT_DIR$/assets/js/postMinimize.js" />
+        <option value="$PROJECT_DIR$/assets/js/postDelete.js" />
+        <option value="$PROJECT_DIR$/assets/js/userFollowUnfollow.js" />
       </list>
     </option>
   </component>
@@ -276,46 +258,6 @@
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="sass" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="projectMark" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projectMark" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -436,18 +378,21 @@
       <workItem from="1561292315774" duration="1782000" />
       <workItem from="1561294150480" duration="1791000" />
       <workItem from="1561295963722" duration="1788000" />
-      <workItem from="1561297778660" duration="595000" />
+      <workItem from="1561297778660" duration="887000" />
+      <workItem from="1561745736070" duration="1784000" />
+      <workItem from="1561747561874" duration="1327000" />
+      <workItem from="1561750317248" duration="1791000" />
+      <workItem from="1561752128728" duration="1242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110756000" />
+    <option name="totallyTimeSpent" value="117192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3348329" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35282776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -472,21 +417,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Repository/PostRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/scroll.js" />
-    <entry file="file://$PROJECT_DIR$/src/Twig/AppExtension.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Post.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-289">
@@ -539,27 +469,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/userScrollToPosts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/postUnlike.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/postLike.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/postLikeAndUnlike.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/userFollow.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/userUnfollow.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/postLikeUnlike.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/userFollowUnfollow.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/settingsUserAboutAutosize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/postsLoading.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/usersLoading.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/search.js" />
@@ -578,41 +492,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/loadingPostsUsers.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/searching.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/likeUnlike.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/loading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="3" selection-start-line="51" selection-start-column="3" selection-end-line="51" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/FormatText.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
           <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/LikeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -686,20 +569,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/followUnfollow.js">
+    <entry file="file://$PROJECT_DIR$/src/Controller/LikeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="-306">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding>
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="e#34#54#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/followUnfollow.js" />
+    <entry file="file://$PROJECT_DIR$/assets/js/likeUnlike.js" />
+    <entry file="file://$PROJECT_DIR$/assets/js/postsMinimize.js" />
+    <entry file="file://$PROJECT_DIR$/assets/js/userScrollToPosts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/settingsUserAboutAutosize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/postCreate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-444">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="-631">
+          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
           </folding>
@@ -708,22 +622,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/postDelete.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="3" lean-forward="true" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+        <state relative-caret-position="255">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/postsMinimize.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/postLikeUnlike.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="3" lean-forward="true" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+        <state relative-caret-position="341">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/postMinimize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/searching.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="3" lean-forward="true" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/userAboutAutosize.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/userFollowUnfollow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/userScrollToPost.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>

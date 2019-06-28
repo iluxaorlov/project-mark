@@ -1,52 +1,59 @@
 $(document).ready(function() {
 
     let inProgress = false;
-    let $text = $('#profile__create__text');
-    let $button = $('#profile__create__button');
+    let $textField = $('#profile__create__text');
+    let $shareButton = $('#profile__create__button');
 
-    $text.on('focus', function() {
+    $textField.on('focus', function() {
         $(this).attr('rows', 3);
-        $button.css('display', 'flex');
+        $shareButton.css('display', 'flex');
     });
 
-    $text.on('blur', function() {
-        if (!$(this).val()) {
+    $textField.on('blur', function() {
+        if ($(this).val() === '') {
             $(this).attr('rows', 1);
             $(this).css('height', '');
-            $button.css('display', 'none');
+            $shareButton.css('display', 'none');
         }
     });
 
-    $text.on('input', function() {
+    $textField.on('input', function() {
         $(this).css('height', '');
         $(this).css('height', this.scrollHeight - 32 + 'px');
     });
 
-    $button.on('click', function() {
+    $shareButton.on('click', function() {
         if (inProgress === false) {
+            // only if not in progress
             inProgress = true;
-
+            // adding loading icon
             $(this).html('<i class="fas fa-spinner fa-spin" style="font-size: 19px"></i>');
 
             $.ajax({
                 type: 'post',
                 url: window.location.pathname + '/create',
                 data: {
-                    'text': $text.val()
+                    'text': $textField.val()
                 },
                 success: (data, textStatus) => {
                     if (textStatus === 'success') {
                         if (data) {
+                            // remove message that there is no posts
                             $('#empty').remove();
+                            // adding list of posts from response to start of posts container
                             $('#posts').prepend(data);
+                            // minimize long posts
                             minimize();
+                            // clear input field
                             clear();
-                            $button.text('Поделиться');
+                            // change share button text to default
+                            $shareButton.text('Поделиться');
                             // increment number of posts
                             document.getElementsByClassName('profile__detail__item__count')[0].innerText++;
                         }
                     } else {
-                        $button.text('Поделиться');
+                        // anyway if there is an error change share button text to default
+                        $shareButton.text('Поделиться');
                     }
                 },
                 complete: () => {
@@ -65,8 +72,8 @@ $(document).ready(function() {
     }
 
     function clear() {
-        $text.val('').attr('rows', 1).css('height', '');
-        $button.css('display', 'none');
+        $textField.val('').attr('rows', 1).css('height', '');
+        $shareButton.css('display', 'none');
     }
 
 });

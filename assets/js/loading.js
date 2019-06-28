@@ -5,48 +5,54 @@ $(document).ready(function() {
     $(window).on('scroll', function() {
         if (window.scrollY >= document.documentElement.scrollHeight - window.innerHeight - window.innerHeight) {
             if ($('#posts').length > 0) {
-                loading($('#posts'), $('.post'));
+                // length of posts is offset for request
+                loading.call($('#posts'), $('.post').length);
             }
 
             if ($('#users').length > 0) {
-                loading($('#users'), $('.user'));
+                // length of users is offset for request
+                loading.call($('#users'), $('.user').length);
             }
         }
     });
 
-    function loading($container, $items) {
+    function loading(offset) {
         if (inProgress === false) {
+            // only if not in progress
             inProgress = true;
 
             $.ajax({
                 type: 'post',
                 url: window.location.pathname,
                 data: {
-                    'offset': $items.length
+                    'offset': offset
                 },
                 success: (data, textStatus) => {
                     if (textStatus === 'success') {
                         if (data) {
-                            $container.append(data);
-                            inProgress = false;
+                            // appending elements form response
+                            $(this).append(data);
 
-                            if ($($container).attr('id') === 'posts') {
+                            if ($(this).attr('id') === 'posts') {
                                 // minimize long posts
                                 minimize();
                             }
                         }
                     }
+                },
+                complete: () => {
+                    inProgress = false;
                 }
             });
         }
+    }
 
-        function minimize() {
-            $('.post__body__text').each((index, element) => {
-                if ($(element).children('.post__body__text__hide').length > 0) {
-                    $(element).css('cursor', 'pointer');
-                }
-            });
-        }
+    function minimize() {
+        $('.post__body__text').each((index, element) => {
+            if ($(element).children('.post__body__text__hide').length > 0) {
+                $(element).css('cursor', 'pointer');
+            }
+        });
     }
 
 });
