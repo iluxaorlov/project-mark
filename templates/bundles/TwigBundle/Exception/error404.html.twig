@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Страница не найдена • Mark{% endblock %}
 
 {% block body %}
     {% include 'navigator.html.twig' %}
 
     <div id="container">
-        <p id="sad"><i class="fas fa-times"></i></p>
+        <div id="error">
+            <img id="sad" src="{{ asset('public/img/sad.svg') }}" alt=":(">
+        </div>
         <p id="empty">Данная страница была удалена, либо никогда не существовала</p>
     </div>
 {% endblock %}
