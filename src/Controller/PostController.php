@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Repository\PostRepository;
-use App\Service\FormatText;
+use App\Service\Format;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,8 +22,8 @@ class PostController extends AbstractController
     /**
      * @param User $user
      * @param Request $request
-     * @param PostRepository $postRepository
-     * @param FormatText $formatText
+     * @param PostRepository $repository
+     * @param Format $format
      * @throws NotFoundHttpException
      * @throws HttpException
      * @return Response
@@ -31,7 +31,7 @@ class PostController extends AbstractController
      * @Route("/{nickname}/create")
      * @IsGranted("ROLE_USER")
      */
-    public function create(User $user, Request $request, PostRepository $postRepository, FormatText $formatText)
+    public function create(User $user, Request $request, PostRepository $repository, Format $format)
     {
         if (!$request->isXmlHttpRequest()) {
             // if request is not post request then return response with code 404
@@ -46,6 +46,7 @@ class PostController extends AbstractController
         }
 
         $text = $request->get('text');
+        $text = $format->formatText($text);
 
         if ($text === null) {
             throw new HttpException(204);
@@ -53,14 +54,14 @@ class PostController extends AbstractController
 
         $post = new Post();
         $post->setUser($currentUser);
-        $post->setText($formatText->formatText($text));
+        $post->setText($text);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($post);
         $entityManager->flush();
 
         // find last insert post
-        $posts = $postRepository->findBy([
+        $posts = $repository->findBy([
             'id' => $post->getId()
         ]);
 
@@ -73,6 +74,7 @@ class PostController extends AbstractController
     /**
      * @param Post $post
      * @param Request $request
+     * @throws NotFoundHttpException
      * @return Response
      *
      * @Route("/{id}/delete", name="delete")
@@ -85,10 +87,10 @@ class PostController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $currentUser = $this->getUser();
+        $user = $this->getUser();
         $postUser = $post->getUser();
 
-        if ($currentUser !== $postUser) {
+        if ($user !== $postUser) {
             throw new NotFoundHttpException();
         }
 

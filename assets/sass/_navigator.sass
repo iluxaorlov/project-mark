@@ -4,43 +4,24 @@
   width: 100vw
   min-width: 320px
   background-color: $mc
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5)
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25)
   z-index: 1
 
   #navigator__container
     display: flex
-    justify-content: center
+    justify-content: space-between
     align-items: center
     position: relative
     max-width: 640px
     margin: 0 auto
-    font-size: 19px
 
-    #navigator__search
-      position: absolute
-      top: 0
-      left: 0
+    #navigator__search, #navigator__index, #navigator__user
       display: flex
-      padding: 16px
-      color: #ffffff
-      text-decoration: none
-      transition: opacity 250ms linear
+      justify-content: center
+      align-items: center
+      width: 51px
+      height: 51px
 
-    #navigator__index
-      padding: 16px
-      transition: opacity 250ms linear
-
-      #navigator__logotype
+      .navigator__image
         display: flex
-        width: 19px
         height: 19px
-
-    #navigator__user
-      position: absolute
-      top: 0
-      right: 0
-      display: flex
-      padding: 16px
-      color: #ffffff
-      text-decoration: none
-      transition: opacity 250ms linear

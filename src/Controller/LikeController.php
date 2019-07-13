@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ class LikeController extends AbstractController
      * @return Response
      *
      * @Route("/{id}/like")
+     * @IsGranted("ROLE_USER")
      */
     public function like(Post $post, Request $request)
     {
@@ -49,6 +51,7 @@ class LikeController extends AbstractController
      * @return Response
      *
      * @Route("/{id}/unlike")
+     * @IsGranted("ROLE_USER")
      */
     public function unlike(Post $post, Request $request)
     {

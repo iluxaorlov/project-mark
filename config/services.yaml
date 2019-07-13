@@ -24,7 +24,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Service\FormatText:
+    App\Service\Format:
         autowire: true
 
     # add more service definitions when explicit configuration is needed

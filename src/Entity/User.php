@@ -28,7 +28,7 @@ class User implements UserInterface, Serializable
      * @var string
      *
      * @ORM\Column(type="string", nullable=false)
-     * @Assert\Regex(pattern="/[^register|^login|^logout|^edit|^create]/", message="Пользователь с таким именем уже существует")
+     * @Assert\Regex(pattern="/[^register|^login|^logout|^edit|^create|^settings]/", message="Пользователь с таким именем уже существует")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Имя пользователя должно содержать только латинские буквы или цифры")
      * @Assert\Length(max="12", maxMessage="Имя пользователя должно содержать не более {{ limit }} символов")
      * @Assert\NotBlank(message="Введите имя пользователя")
@@ -107,9 +107,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getNickname(): ?string
+    public function getNickname()
     {
         return $this->nickname;
     }
@@ -123,9 +123,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getFullName(): ?string
+    public function getFullName()
     {
         return $this->fullName;
     }
@@ -139,9 +139,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getAbout(): ?string
+    public function getAbout()
     {
         return $this->about;
     }
@@ -155,9 +155,9 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return string|null
+     * @return mixed
      */
-    public function getPassword(): ?string
+    public function getPassword()
     {
         return $this->password;
     }

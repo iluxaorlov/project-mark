@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,24 +30,7 @@ class FollowController extends AbstractController
     {
         // post request
         if ($request->isXmlHttpRequest()) {
-            $offset = $request->get('offset');
-
-            if (!$offset) {
-                // if there's no offset then return response with code 400
-                throw new HttpException(400);
-            }
-
-            $users = $user->getFollowing()->slice($offset, self::LIMIT);
-
-            if (!$users) {
-                // if there's no users then return response with code 204
-                throw new HttpException(204);
-            }
-
-            // return response with list of users
-            return $this->render('user/user.html.twig', [
-                'users' => $users
-            ]);
+            return $this->loading($user->getFollowing(), $request);
         }
 
         $users = $user->getFollowing()->slice(0, self::LIMIT);
@@ -68,24 +52,7 @@ class FollowController extends AbstractController
     {
         // post request
         if ($request->isXmlHttpRequest()) {
-            $offset = $request->get('offset');
-
-            if (!$offset) {
-                // if there's no offset then return response with code 400
-                throw new HttpException(400);
-            }
-
-            $users = $user->getFollowers()->slice($offset, self::LIMIT);
-
-            if (!$users) {
-                // if there's no users then return response with code 204
-                throw new HttpException(204);
-            }
-
-            // return response with list of users
-            return $this->render('user/user.html.twig', [
-                'users' => $users
-            ]);
+            return $this->loading($user->getFollowers(), $request);
         }
 
         $users = $user->getFollowers()->slice(0, self::LIMIT);
@@ -99,6 +66,7 @@ class FollowController extends AbstractController
     /**
      * @param User $userToFollow
      * @param Request $request
+     * @throws NotFoundHttpException
      * @return Response
      *
      * @Route("/{nickname}/follow")
@@ -129,6 +97,7 @@ class FollowController extends AbstractController
     /**
      * @param User $userToUnfollow
      * @param Request $request
+     * @throws NotFoundHttpException
      * @return Response
      *
      * @Route("/{nickname}/unfollow")
@@ -153,6 +122,35 @@ class FollowController extends AbstractController
         // return response with action button
         return $this->render('user/action.html.twig', [
             'user' => $userToUnfollow
+        ]);
+    }
+
+    /**
+     * @param ArrayCollection $users
+     * @param Request $request
+     * @throws HttpException
+     * @return Response
+     */
+    private function loading(ArrayCollection $users, Request $request)
+    {
+        // number of users on the page
+        $offset = $request->get('offset');
+
+        if (!$offset) {
+            // if there's no users on the page then return response with code 400
+            throw new HttpException(400);
+        }
+
+        $users = $users->slice($offset, self::LIMIT);
+
+        if (!$users) {
+            // if there's no users then return response with code 204
+            throw new HttpException(204);
+        }
+
+        // return response with list of users
+        return $this->render('user/user.html.twig', [
+            'users' => $users
         ]);
     }
 }
