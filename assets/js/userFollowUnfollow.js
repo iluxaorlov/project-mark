@@ -22,7 +22,7 @@ $(document).ready(function() {
             // only if not in progress
             inProgress = true;
             // adding loading icon
-            $(this).html('<i class="fas fa-spinner fa-spin" style="font-size: 19px"></i>');
+            $(this).html('<img class="loading" src="/img/app/loading.svg" alt="">');
 
             $.ajax({
                 type: 'post',

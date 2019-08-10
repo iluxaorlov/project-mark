@@ -6,15 +6,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="theme-color" content="#8000ff">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        <link rel="shortcut icon" href="{{ asset('/public/favicon.ico') }}" type="image/x-icon">
+        <link rel="stylesheet" href="{{ asset('/public/build/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-              crossorigin="anonymous">
     </head>
     <body>
         {% block body %}{% endblock %}
-        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="{{ asset('/public/build/app.js') }}"></script>
     </body>
 </html>

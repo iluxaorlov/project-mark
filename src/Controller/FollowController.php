@@ -29,7 +29,7 @@ class FollowController extends AbstractController
     public function following(User $user, Request $request)
     {
         // post request
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isMethod('POST')) {
             return $this->loading($user->getFollowing(), $request);
         }
 
@@ -51,8 +51,8 @@ class FollowController extends AbstractController
     public function followers(User $user, Request $request)
     {
         // post request
-        if ($request->isXmlHttpRequest()) {
-            return $this->loading($user->getFollowers(), $request);
+        if ($request->isMethod('POST')) {
+            return $this->loading($user->getFollowing(), $request);
         }
 
         $users = $user->getFollowers()->slice(0, self::LIMIT);
@@ -73,7 +73,7 @@ class FollowController extends AbstractController
      */
     public function follow(User $userToFollow, Request $request)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
@@ -104,7 +104,7 @@ class FollowController extends AbstractController
      */
     public function unfollow(User $userToUnfollow, Request $request)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }

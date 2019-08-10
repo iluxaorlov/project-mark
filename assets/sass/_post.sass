@@ -4,7 +4,8 @@
 
   .post
     background-color: #ffffff
-    border-radius: 16px
+    border-radius: 4px
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .25)
 
     .post__head
       position: relative
@@ -20,7 +21,7 @@
       .post__head__date
         padding: 16px 0
         font-size: 16px
-        color: $bc
+        color: $hc
 
       .post__head__menu
         position: absolute
@@ -33,17 +34,18 @@
         .post__head__menu__button
           position: absolute
           right: 0
-          font-size: 19px
           padding: 16px
           border: none
           background: none
           cursor: pointer
-          width: 51px
-          height: 51px
           display: flex
           justify-content: center
           align-items: center
-          color: $bc
+          color: $hc
+
+          .post__head__menu__button__icon
+            width: 19px
+            height: 19px
 
         .post__head__menu__list
           visibility: hidden
@@ -53,9 +55,9 @@
           top: 16px
           white-space: nowrap
           background-color: #ffffff
-          border-radius: 8px
+          border-radius: 4px
           cursor: pointer
-          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25)
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25)
           transition: all 250ms linear
 
           .post__head__menu__list__delete
@@ -81,41 +83,43 @@
     .post__foot
       border-top: 1px solid $bc
 
-      .post__foot__like
+      .post__foot__action
         display: flex
-        align-items: center
-        font-size: 16px
-        color: $bc
-        background: none
-        border: none
         padding: 16px
-        cursor: pointer
-        text-decoration: none
 
-        .post__foot__like__icon
-          font-size: 19px
+        .post__foot__like
+          display: flex
+          align-items: center
+          font-size: 16px
+          color: $hc
+          background: none
+          border: none
+          cursor: pointer
+          text-decoration: none
 
-        .post__foot__like__count
-          color: $bc
-          margin-left: 8px
+          .post__foot__like__icon
+            width: 19px
+            height: 19px
 
-      .post__foot__unlike
-        display: flex
-        justify-content: center
-        align-items: center
-        font-size: 16px
-        color: #ff0000
-        background: none
-        border: none
-        padding: 16px
-        cursor: pointer
-        text-decoration: none
-        min-width: 51px
-        height: 51px
+          .post__foot__like__count
+            color: $hc
+            margin-left: 8px
 
-        .post__foot__unlike__icon
-          font-size: 19px
-
-        .post__foot__unlike__count
+        .post__foot__unlike
+          display: flex
+          justify-content: center
+          align-items: center
+          font-size: 16px
           color: #ff0000
-          margin-left: 8px
+          background: none
+          border: none
+          cursor: pointer
+          text-decoration: none
+
+          .post__foot__unlike__icon
+            width: 19px
+            height: 19px
+
+          .post__foot__unlike__count
+            color: #ff0000
+            margin-left: 8px

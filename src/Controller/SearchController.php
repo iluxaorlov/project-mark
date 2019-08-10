@@ -26,7 +26,7 @@ class SearchController extends AbstractController
     public function search(Request $request, UserRepository $userRepository)
     {
         // post request
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isMethod('POST')) {
             $query = $request->get('query');
             // if request haven't offset then offset is zero
             $offset = $request->get('offset') ?? 0;

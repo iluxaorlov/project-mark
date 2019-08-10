@@ -1,15 +1,15 @@
 <div id="navigator">
     <div id="navigator__container">
         {% if app.user %}
-            <a id="navigator__search" href="{{ path('search') }}"><img class="navigator__image" src="{{ asset('img/search.svg') }}"></a>
+            <a id="navigator__search" href="{{ path('search') }}"><img class="navigator__image" src="{{ asset('/public/img/app/search.svg') }}"></a>
         {% else %}
-            <a id="navigator__search" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('img/search.svg') }}"></a>
+            <a id="navigator__search" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('/public/img/app/search.svg') }}"></a>
         {% endif %}
-        <a id="navigator__index" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('img/logotype.svg') }}"></a>
+        <a id="navigator__index" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('/public/img/app/logotype.svg') }}"></a>
         {% if app.user %}
-            <a id="navigator__user" href="{{ path('view', {'nickname': app.user.nickname}) }}"><img class="navigator__image" src="{{ asset('img/user.svg') }}"></a>
+            <a id="navigator__user" href="{{ path('view', {'nickname': app.user.nickname}) }}"><img class="navigator__image" src="{{ asset('/public/img/app/user.svg') }}"></a>
         {% else %}
-            <a id="navigator__user" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('img/user.svg') }}"></a>
+            <a id="navigator__user" href="{{ path('index') }}"><img class="navigator__image" src="{{ asset('/public/img/app/user.svg') }}"></a>
         {% endif %}
     </div>
 </div>

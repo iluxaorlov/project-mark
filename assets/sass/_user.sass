@@ -1,6 +1,7 @@
 #users 
   display: flex
   flex-direction: column
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .25)
 
   .user
     background-color: #ffffff
@@ -8,15 +9,15 @@
     padding: 16px
     font-size: 16px
     text-decoration: none
-    color: #8000ff
+    color: $mc
     transition: color 125ms linear
 
     &:first-child
-      border-radius: 16px 16px 0 0
+      border-radius: 4px 4px 0 0
 
     &:last-child
       border: none
-      border-radius: 0 0 16px 16px
+      border-radius: 0 0 4px 4px
 
     &:only-child
-      border-radius: 16px
+      border-radius: 4px

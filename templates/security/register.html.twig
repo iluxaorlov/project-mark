@@ -14,7 +14,7 @@
 
 {% block body %}
     <header>
-        <img id="logotype" src="{{ asset('img/logotype.svg') }}"></div>
+        <img id="logotype" src="{{ asset('/public/img/app/logotype.svg') }}"></div>
     </header>
     <main>
         {{ form_start(form, {'attr': {
@@ -33,9 +33,9 @@
             'placeholder':'Подтвердите пароль'
         }}) }}
         <button class="submit" type="submit">Регистрация</button>
+        {{ form_end(form) }}
         <p class="undertext">Уже есть аккаунт? <a class="link" href="{{ path('login') }}">Войти</a></p>
         {{ form_errors(form.nickname) }}
         {{ form_errors(form.password.first) }}
-        {{ form_end(form) }}
     </main>
 {% endblock %}

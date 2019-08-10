@@ -27,7 +27,7 @@ $(document).ready(function() {
                 success: (data, textStatus) => {
                     if (textStatus === 'success') {
                         // adding like or unlike button from response
-                        $(this).parents('.post__foot').html(data);
+                        $(this).parents('.post__foot__action').html(data);
                     }
                 },
                 complete: () => {

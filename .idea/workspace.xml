@@ -2,16 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dd6896c-121b-4588-9b65-5201ef9bbbc8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/postCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/postCreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/postLikeUnlike.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/postLikeUnlike.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/userFollowUnfollow.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/userFollowUnfollow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_edit.sass" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_navigator.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_navigator.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/sass/_post.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_post.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_profile.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_profile.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_search.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_search.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_security.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_security.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/_user.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/_user.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sass/app.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sass/app.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/build/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/entrypoints.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/entrypoints.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/logotype.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sad.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/user.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FollowController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LikeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LikeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SearchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SearchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20190616092327.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/like/index.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/navigator.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigator.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/post/like.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/like.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/post/post.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/security/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/view.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,8 +198,15 @@
   <component name="ProjectId" id="1P9kSt0lTFpsecaS0cQLTR3JT6a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -306,6 +339,9 @@
       <workItem from="1562992859643" duration="1781000" />
       <workItem from="1562994683512" duration="831000" />
       <workItem from="1565293706392" duration="686000" />
+      <workItem from="1565369563552" duration="2243000" />
+      <workItem from="1565429998557" duration="13000" />
+      <workItem from="1565448984799" duration="5481000" />
     </task>
     <servers />
   </component>
@@ -317,7 +353,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -1,5 +1,6 @@
 $mc: #8000ff
-$bc: #dacfe5
+$bc: #ece6f2
+$hc: #a78fbf
 
 *
   font-family: 'Roboto', sans-serif
@@ -40,12 +41,23 @@ $bc: #dacfe5
       opacity: 0.5
       padding: 48px 0
 
+  .loading
+    width: 19px
+    height: 19px
+    animation: rotate 2s linear infinite
+
+  @keyframes rotate
+    from
+      transform: rotate(0)
+    to
+      transform: rotate(360deg)
+
   @import profile
 
   @import post
 
   @import user
 
-  @import edit
+  @import settings
 
   @import search

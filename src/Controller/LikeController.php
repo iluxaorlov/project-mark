@@ -24,7 +24,7 @@ class LikeController extends AbstractController
      */
     public function like(Post $post, Request $request)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
@@ -33,7 +33,7 @@ class LikeController extends AbstractController
         $user = $this->getUser();
 
         if (!$post->getLikes()->contains($user)) {
-            // if post haven't like from current user
+            // if post hasn't like from current user
             $post->getLikes()->add($user);
             $this->getDoctrine()->getManager()->flush();
         }
@@ -55,7 +55,7 @@ class LikeController extends AbstractController
      */
     public function unlike(Post $post, Request $request)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
@@ -64,7 +64,7 @@ class LikeController extends AbstractController
         $user = $this->getUser();
 
         if ($post->getLikes()->contains($user)) {
-            // if post have like from current user
+            // if post has like from current user
             $post->getLikes()->removeElement($user);
             $this->getDoctrine()->getManager()->flush();
         }

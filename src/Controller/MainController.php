@@ -28,7 +28,7 @@ class MainController extends AbstractController
     public function index(Request $request, PostRepository $repository)
     {
         // post request
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isMethod('POST')) {
             return $this->loading($request, $repository);
         }
 

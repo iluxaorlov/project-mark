@@ -5,7 +5,9 @@
             <p class="post__head__date">{{ post.createdAt|date('d.m.Y') }}</p>
             {% if post.user == app.user %}
                 <div class="post__head__menu">
-                    <button class="post__head__menu__button"><i class="fas fa-ellipsis-h"></i></button>
+                    <div class="post__head__menu__button">
+                        <img class="post__head__menu__button__icon" src="{{ asset('/public/img/app/menu.svg') }}" alt="">
+                    </div>
                     <div class="post__head__menu__list">
                         <div class="post__head__menu__list__delete">Удалить публикацию</div>
                     </div>
@@ -16,7 +18,9 @@
             <p class="post__body__text">{{ post.text|cut|raw }}</p>
         </div>
         <div class="post__foot">
-            {% include 'post/like.html.twig' %}
+            <div class="post__foot__action">
+                {% include 'post/like.html.twig' %}
+            </div>
         </div>
     </div>
 {% endfor %}

@@ -73,12 +73,9 @@ class UserController extends AbstractController
      */
     public function view(User $user, Request $request, PostRepository $repository)
     {
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isMethod('POST')) {
             return $this->loading($user, $request, $repository);
         }
-
-        // count all user's posts
-        $countPosts = $repository->countUserPosts($user);
 
         $posts = $repository->findBy(
             ['user' => $user],
@@ -89,7 +86,6 @@ class UserController extends AbstractController
         // render user's page
         return $this->render('user/view.html.twig', [
             'user' => $user,
-            'countPosts' => $countPosts,
             'posts' => $posts
         ]);
     }

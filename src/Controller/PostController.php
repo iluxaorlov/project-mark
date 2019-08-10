@@ -33,7 +33,7 @@ class PostController extends AbstractController
      */
     public function create(User $user, Request $request, PostRepository $repository, Format $format)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }
@@ -82,7 +82,7 @@ class PostController extends AbstractController
      */
     public function delete(Post $post, Request $request)
     {
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isMethod('POST')) {
             // if request is not post request then return response with code 404
             throw new NotFoundHttpException();
         }

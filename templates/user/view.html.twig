@@ -7,16 +7,16 @@
 
     <div id="container">
         <div id="profile">
-            <h1 id="profile__login">{{ user.nickname }}</h1>
+            <h1 id="profile__nickname">{{ user.nickname }}</h1>
             {% if user.fullname %}
-                <h2 id="profile__name">{{ user.fullname }}</h2>
+                <h2 id="profile__fullname">{{ user.fullname }}</h2>
             {% endif %}
             {% if user.about %}
                 <p id="profile__about">{{ user.about|raw }}</p>
             {% endif %}
             <div id="profile__detail">
                 <a class="profile__detail__item" href="#">
-                    <div class="profile__detail__item__count">{{ countPosts }}</div>
+                    <div class="profile__detail__item__count">{{ user.posts.count }}</div>
                     <div class="profile__detail__item__name">Публикации</div>
                 </a>
                 <a class="profile__detail__item" href="{{ path('following', {'nickname': user.nickname}) }}">
