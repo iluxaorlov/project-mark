@@ -40,11 +40,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // if form is valid then save changes
+            // if form is valid then saving changes
             $user->setNickname($format->formatNickname($form->get('nickname')->getData()));
             $user->setFullName($format->formatFullName($form->get('fullName')->getData()));
             $user->setAbout($format->formatAbout($form->get('about')->getData()));
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
@@ -99,7 +98,7 @@ class UserController extends AbstractController
      */
     public function loading(User $user, Request $request, PostRepository $postRepository)
     {
-        // number of posts on the page
+        // number of posts on the page already
         $offset = $request->get('offset');
 
         if (!$offset) {

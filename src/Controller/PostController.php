@@ -34,7 +34,7 @@ class PostController extends AbstractController
     public function create(User $user, Request $request, PostRepository $repository, Format $format)
     {
         if (!$request->isMethod('POST')) {
-            // if request is not post request then return response with code 404
+            // if request is not post then return response with code 404
             throw new NotFoundHttpException();
         }
 
