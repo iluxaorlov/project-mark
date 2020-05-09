@@ -1,38 +1,14 @@
 security:
-    encoders:
-        App\Entity\User:
-            algorithm: auto
-
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users:
-            entity:
-                class: 'App\Entity\User'
-                property: 'nickname'
-
+        users_in_memory: { memory: null }
     firewalls:
-#        dev:
-#            pattern: ^/(_(profiler|wdt)|css|images|js)/
-#            security: false
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
         main:
-            anonymous: ~
-
-            form_login:
-                login_path: login
-                check_path: login
-                csrf_token_generator: security.csrf.token_manager
-                default_target_path: index
-                always_use_default_target_path: true
-
-            logout:
-                path: logout
-                target: login
-
-            remember_me:
-                secret:   '%kernel.secret%'
-                lifetime: 31536000
-                path: /
-                always_remember_me: true
+            anonymous: lazy
+            provider: users_in_memory
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
