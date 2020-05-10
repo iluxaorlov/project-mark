@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path('register') }}" method="post">
+        <input type="text" name="username" placeholder="Имя пользователя" value="{{ lastUsername }}">
+        <input type="password" name="password" placeholder="Пароль">
+        <button type="submit">Регистрация</button>
+    </form>
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+{% endblock %}

@@ -5,82 +5,105 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="user")
- * @UniqueEntity("username")
+ * @ORM\Table(name="`user`")
+ * @UniqueEntity("username", message="Пользователь с таким именем уже существует")
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="string", nullable=false, unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="App\Service\CustomIdGenerator")
+     * @ORM\Column(name="id", type="string", nullable=false, unique=true)
      */
-    private string $id;
+    private ?string $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="username", nullable=false, unique=true)
+     * @ORM\Column(name="username", type="string", nullable=false, unique=true)
+     * @Assert\NotBlank(message="Введите имя пользователя")
      */
-    private string $username;
+    private ?string $username;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="password", nullable=false)
+     * @ORM\Column(name="password", type="string", nullable=false)
+     * @Assert\NotBlank(message="Введите пароль")
      */
-    private string $password;
+    private ?string $password;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param string|null $id
      */
-    public function setId(string $id): void
+    public function setId(?string $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * @param string $username
+     * @param string|null $username
      */
-    public function setUsername(string $username): void
+    public function setUsername(?string $username): void
     {
         $this->username = $username;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * @param string $password
+     * @param string|null $password
      */
-    public function setPassword(string $password): void
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return [
+            'ROLE_USER',
+        ];
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
