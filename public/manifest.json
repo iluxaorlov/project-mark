@@ -1,0 +1,6 @@
+{
+  "name": "Mark",
+  "short_name": "Mark",
+  "start_url": "login",
+  "display": "standalone"
+}

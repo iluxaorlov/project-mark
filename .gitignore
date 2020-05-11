@@ -10,3 +10,7 @@
 /phpunit.xml
 /.idea
 /docker/pgsql/.data
+/node_modules/
+/public/build/
+/npm-debug.log
+/yarn-error.log

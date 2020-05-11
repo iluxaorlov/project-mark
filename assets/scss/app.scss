@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+
+    body {
+        min-width: 320px;
+        background-color: rgba(#8000ff, .1);
+    }
+}
+
+.container {
+    max-width: 640px;
+    margin: auto;
+    padding: 16px;
+}
+
+@import 'security';
