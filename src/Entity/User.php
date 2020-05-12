@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -40,6 +43,18 @@ class User implements UserInterface
      * @Assert\NotBlank(message="Введите пароль")
      */
     private ?string $password;
+
+    /**
+     * @var Collection|null
+     *
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     */
+    private ?Collection $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * @return string|null
@@ -87,6 +102,22 @@ class User implements UserInterface
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getPosts(): ?Collection
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Collection|null $posts
+     */
+    public function setPosts(?Collection $posts): void
+    {
+        $this->posts = $posts;
     }
 
     /**

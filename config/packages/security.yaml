@@ -16,11 +16,20 @@ security:
         main:
             anonymous: lazy
             provider: users
+
+            remember_me:
+                secret: '%kernel.secret%'
+                always_remember_me: true
+
             form_login:
                 login_path: login
                 check_path: login
                 username_parameter: username
                 password_parameter: password
+                default_target_path: feed
+
+            logout:
+                path: logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
