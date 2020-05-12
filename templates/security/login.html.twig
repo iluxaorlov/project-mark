@@ -5,10 +5,10 @@
         <img src="{{ asset('/img/logotype.svg') }}"></div>
     </div>
     <div class="container">
-        <form action="{{ path('login') }}" method="post">
+        <form id="form" action="{{ path('login') }}" method="post">
             <input type="text" name="username" placeholder="Имя пользователя" value="{{ lastUsername }}">
             <input type="password" name="password" placeholder="Пароль">
-            <button type="submit">Войти</button>
+            <button id="button" type="submit">Войти</button>
         </form>
         {% if error %}
             <div id="error">Неверный логин или пароль</div>

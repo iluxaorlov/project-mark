@@ -5,7 +5,6 @@ Encore
     .setPublicPath('/build')
     .addEntry('app', './assets/js/app.js')
     .splitEntryChunks()
-    .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
     .enableSassLoader()
 ;
