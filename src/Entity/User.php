@@ -39,10 +39,42 @@ class User implements UserInterface
     /**
      * @var string|null
      *
+     * @ORM\Column(name="full_name", type="string", nullable=true)
+     */
+    private ?string $fullName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="about", type="string", nullable=true)
+     */
+    private ?string $about;
+
+    /**
+     * @var string|null
+     *
      * @ORM\Column(name="password", type="string", nullable=false)
      * @Assert\NotBlank(message="Введите пароль")
      */
     private ?string $password;
+
+    /**
+     * @var Collection|null
+     *
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="subscriptions")
+     */
+    private ?Collection $subscribers;
+
+    /**
+     * @var Collection|null
+     *
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="subscribers")
+     * @ORM\JoinTable(name="subscription",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="subscription_user_id", referencedColumnName="id")}
+     *     )
+     */
+    private ?Collection $subscriptions;
 
     /**
      * @var Collection|null
@@ -54,6 +86,8 @@ class User implements UserInterface
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->subscribers = new ArrayCollection();
+        $this->subscriptions = new ArrayCollection();
     }
 
     /**
@@ -91,6 +125,38 @@ class User implements UserInterface
     /**
      * @return string|null
      */
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param string|null $fullName
+     */
+    public function setFullName(?string $fullName): void
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAbout(): ?string
+    {
+        return $this->about;
+    }
+
+    /**
+     * @param string|null $about
+     */
+    public function setAbout(?string $about): void
+    {
+        $this->about = $about;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -102,6 +168,38 @@ class User implements UserInterface
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getSubscribers(): ?Collection
+    {
+        return $this->subscribers;
+    }
+
+    /**
+     * @param Collection|null $subscribers
+     */
+    public function setSubscribers(?Collection $subscribers): void
+    {
+        $this->subscribers = $subscribers;
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getSubscriptions(): ?Collection
+    {
+        return $this->subscriptions;
+    }
+
+    /**
+     * @param Collection|null $subscriptions
+     */
+    public function setSubscriptions(?Collection $subscriptions): void
+    {
+        $this->subscriptions = $subscriptions;
     }
 
     /**

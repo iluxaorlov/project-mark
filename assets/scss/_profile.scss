@@ -1,0 +1,43 @@
+#profile {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+
+    #username {
+        font-size: 32px;
+        font-weight: 300;
+    }
+
+    #full_name {
+        font-size: 16px;
+        margin-top: 16px;
+    }
+
+    #about {
+        font-size: 16px;
+        margin-top: 16px;
+    }
+
+    #detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 16px;
+
+        .item {
+            color: #8000ff;
+            text-align: center;
+            width: 100%;
+
+            .count {
+                font-size: 32px;
+                font-weight: 300;
+            }
+
+            .text {
+                font-size: 10px;
+                font-weight: 500;
+            }
+        }
+    }
+}

@@ -6,9 +6,20 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('/build/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
-        <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="{{ asset('/manifest.json') }}">
     </head>
     <body>
+        <div id="dummy"></div>
+        <div id="bar">
+            <div id="wrapper">
+                <div id="navigator">
+                    <a class="link" href="/"><img class="image" src="{{ asset('/img/search.svg') }}" alt=""></a>
+                    <a class="link" href="/"><img class="image" src="{{ asset('/img/logotype.svg') }}" alt=""></a>
+                    <a class="link" href="/"><img class="image" src="{{ asset('/img/user.svg') }}" alt=""></a>
+                </div>
+            </div>
+        </div>
+
         {% block body %}{% endblock %}
     </body>
     <script src="{{ asset('/build/app.js') }}"></script>

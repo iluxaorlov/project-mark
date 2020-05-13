@@ -3,7 +3,9 @@
 {% block title %}Лента{% endblock %}
 
 {% block body %}
-    {% for post in posts %}
-        <p>{{ post.text }}</p>
-    {% endfor %}
+    <div class="container">
+        <div id="posts">
+            {% include 'post/post.html.twig' %}
+        </div>
+    </div>
 {% endblock %}

@@ -14,6 +14,11 @@
     max-width: 640px;
     margin: auto;
     padding: 16px;
+    display: grid;
+    grid-gap: 16px;
 }
 
+@import 'header';
 @import 'security';
+@import 'post';
+@import 'profile';

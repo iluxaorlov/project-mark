@@ -3,7 +3,28 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body %}
-    {% for post in user.posts %}
-        <p>{{ post.text }}</p>
-    {% endfor %}
+    <div class="container">
+        <div id="profile">
+            <div id="username">{{ user.username }}</div>
+            <div id="full_name">{{ user.fullName }}</div>
+            <div id="about">{{ user.about|raw }}</div>
+            <div id="detail">
+                <div class="item">
+                    <div class="count">{{ user.posts.count }}</div>
+                    <div class="text">Публикации</div>
+                </div>
+                <div class="item">
+                    <div class="count">{{ user.subscriptions.count }}</div>
+                    <div class="text">Подписки</div>
+                </div>
+                <div class="item">
+                    <div class="count">{{ user.subscribers.count }}</div>
+                    <div class="text">Подписчики</div>
+                </div>
+            </div>
+        </div>
+        <div id="posts">
+            {% include 'post/post.html.twig' %}
+        </div>
+    </div>
 {% endblock %}

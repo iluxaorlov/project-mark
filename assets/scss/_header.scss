@@ -1,0 +1,30 @@
+#bar {
+    background-color: #8000ff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    #wrapper {
+        max-width: 640px;
+        margin: auto;
+
+        #navigator {
+            display: flex;
+            justify-content: space-between;
+
+            .link {
+                display: flex;
+                padding: 16px;
+
+                .image {
+                    height: 19px;
+                }
+            }
+        }
+    }
+}
+
+#dummy {
+    height: 51px;
+}

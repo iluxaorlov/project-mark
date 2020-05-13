@@ -1,0 +1,23 @@
+#posts {
+    display: grid;
+    gap: 16px;
+
+    .post {
+        background-color: #ffffff;
+        border-radius: 8px;
+
+        .head {
+            padding: 16px;
+            border-bottom: 1px solid rgba(#8000ff, .1);
+
+            .user {
+                color: #8000ff;
+                text-decoration: none;
+            }
+        }
+
+        .body {
+            padding: 16px;
+        }
+    }
+}
