@@ -13,13 +13,18 @@
         <div id="bar">
             <div id="wrapper">
                 <div id="navigator">
-                    <a class="link" href="/"><img class="image" src="{{ asset('/img/search.svg') }}" alt=""></a>
-                    <a class="link" href="/"><img class="image" src="{{ asset('/img/logotype.svg') }}" alt=""></a>
-                    <a class="link" href="/"><img class="image" src="{{ asset('/img/user.svg') }}" alt=""></a>
+                    <a class="link" href="/">
+                        <img class="image" src="{{ asset('/img/search.svg') }}" alt="">
+                    </a>
+                    <a class="link" href="{{ path('feed') }}">
+                        <img class="image" src="{{ asset('/img/logotype.svg') }}" alt="">
+                    </a>
+                    <a class="link" href="{{ path('profile', {'username': 'ilyaorlov'}) }}">
+                        <img class="image" src="{{ asset('/img/user.svg') }}" alt="">
+                    </a>
                 </div>
             </div>
         </div>
-
         {% block body %}{% endblock %}
     </body>
     <script src="{{ asset('/build/app.js') }}"></script>

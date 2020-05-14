@@ -2,6 +2,7 @@
     background-color: #ffffff;
     border-radius: 8px;
     padding: 16px;
+    box-shadow: 0 4px 0px 0 rgba(#000000, .1);
 
     #username {
         font-size: 32px;
@@ -11,6 +12,7 @@
     #full_name {
         font-size: 16px;
         margin-top: 16px;
+        font-weight: 600;
     }
 
     #about {
@@ -39,5 +41,16 @@
                 font-weight: 500;
             }
         }
+    }
+
+    #action {
+        display: block;
+        padding: 16px;
+        background-color: #8000ff;
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 16px;
+        border-radius: 4px;
     }
 }
