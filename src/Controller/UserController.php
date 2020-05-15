@@ -12,21 +12,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/{username}", name="profile")
-     *
-     * @param User $user
-     *
-     * @return Response
-     */
-    public function profile(User $user)
-    {
-        return $this->render('user/profile.html.twig', [
-            'user' => $user,
-            'posts' => $user->getPosts(),
-        ]);
-    }
-
-    /**
      * @Route("/settings", name="settings")
      *
      * @param Request $request
@@ -43,14 +28,14 @@ class UserController extends AbstractController
         if ($request->getMethod() === Request::METHOD_POST) {
             $user->setUsername($request->get('username'));
             $user->setFullName($request->get('full_name'));
-            $user->setAbout($request->get('about'));
+            $user->setAbout($this->formatLineBreak($request->get('about')));
             $errors = $validator->validate($user);
 
             if ($errors->count() > 0) {
                 $error = $errors->get(0);
             }
 
-            if ($errors->count() < 0) {
+            if ($errors->count() < 1) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -64,6 +49,30 @@ class UserController extends AbstractController
         return $this->render('user/settings.html.twig', [
             'user' => $user,
             'error' => $error,
+        ]);
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    private function formatLineBreak(string $text): string
+    {
+        return str_replace(PHP_EOL, '<br>', $text);
+    }
+
+    /**
+     * @Route("/{username}", name="profile")
+     *
+     * @param User $user
+     *
+     * @return Response
+     */
+    public function profile(User $user)
+    {
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
+            'posts' => $user->getPosts(),
         ]);
     }
 }
