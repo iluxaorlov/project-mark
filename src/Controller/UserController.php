@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/settings", name="settings")
+     * @IsGranted("ROLE_USER")
      *
      * @param Request $request
      * @param ValidatorInterface $validator
@@ -21,17 +23,21 @@ class UserController extends AbstractController
      */
     public function settings(Request $request, ValidatorInterface $validator)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         /** @var User $user */
         $user = $this->getUser();
+        $lastNickname = $user->getNickname();
         $error = null;
 
         if ($request->getMethod() === Request::METHOD_POST) {
-            $user->setUsername($request->get('username'));
-            $user->setFullName($request->get('full_name'));
-            $user->setAbout($this->formatLineBreak($request->get('about')));
+            $user->setNickname($request->get('nickname') ?: null);
+            $user->setFullName($request->get('full_name') ?: null);
+            $user->setAbout($request->get('about') ?: null);
             $errors = $validator->validate($user);
 
             if ($errors->count() > 0) {
+                $user->setNickname($lastNickname);
                 $error = $errors->get(0);
             }
 
@@ -41,7 +47,7 @@ class UserController extends AbstractController
                 $entityManager->flush();
 
                 return $this->redirectToRoute('profile', [
-                    'username' => $user->getUsername(),
+                    'nickname' => $user->getNickname(),
                 ]);
             }
         }
@@ -53,16 +59,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param string $text
-     * @return string
-     */
-    private function formatLineBreak(string $text): string
-    {
-        return str_replace(PHP_EOL, '<br>', $text);
-    }
-
-    /**
-     * @Route("/{username}", name="profile")
+     * @Route("/{nickname}", name="profile")
      *
      * @param User $user
      *

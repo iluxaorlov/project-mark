@@ -7,7 +7,7 @@ security:
         users:
             entity:
                 class: 'App\Entity\User'
-                property: 'username'
+                property: 'nickname'
 
     firewalls:
         dev:
@@ -24,7 +24,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                username_parameter: username
+                username_parameter: nickname
                 password_parameter: password
                 default_target_path: feed
 

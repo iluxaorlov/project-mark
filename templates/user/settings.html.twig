@@ -5,9 +5,9 @@
 {% block body %}
     <div class="container">
         <form id="settings" action="{{ path('settings') }}" method="post">
-            <input type="text" name="username" value="{{ user.username }}" placeholder="Имя пользователя">
+            <input type="text" name="nickname" value="{{ user.nickname }}" placeholder="Имя пользователя">
             <input type="text" name="full_name" value="{{ user.fullName }}" placeholder="Полное имя">
-            <textarea id="about" name="about" placeholder="О себе">{{ user.about|br2nl }}</textarea>
+            <textarea id="about" name="about" placeholder="О себе">{{ user.about|br2nl|raw }}</textarea>
             <button id="button" type="submit">Сохранить</button>
         </form>
         {% if error %}

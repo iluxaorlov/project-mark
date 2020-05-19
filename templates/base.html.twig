@@ -20,7 +20,7 @@
                     <a class="link" href="{{ path('feed') }}">
                         <img class="image" src="{{ asset('/img/logotype.svg') }}" alt="">
                     </a>
-                    <a class="link" href="{{ path('profile', {'username': 'ilyaorlov'}) }}">
+                    <a class="link" href="{{ path('profile', {'nickname': app.user.nickname}) }}">
                         <img class="image" src="{{ asset('/img/user.svg') }}" alt="">
                     </a>
                 </div>

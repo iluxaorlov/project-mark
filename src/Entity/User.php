@@ -6,7 +6,6 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
- * @UniqueEntity("username", message="Пользователь с таким именем уже существует")
+ * @UniqueEntity("nickname", message="Пользователь с таким именем уже существует")
  */
 class User implements UserInterface
 {
@@ -31,10 +30,11 @@ class User implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="username", type="string", nullable=false, unique=true)
+     * @ORM\Column(name="nickname", type="string", nullable=false, unique=true)
      * @Assert\NotBlank(message="Введите имя пользователя")
+     * @Assert\Regex("/^\w+$/", message="Имя пользователя может содержать только буквы латинского алфавита и знак нижнего подчеркивания")
      */
-    private ?string $username;
+    private ?string $nickname;
 
     /**
      * @var string|null
@@ -111,15 +111,23 @@ class User implements UserInterface
      */
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this->id;
     }
 
     /**
-     * @param string|null $username
+     * @return string|null
      */
-    public function setUsername(?string $username): void
+    public function getNickname(): ?string
     {
-        $this->username = $username;
+        return $this->nickname;
+    }
+
+    /**
+     * @param string|null $nickname
+     */
+    public function setNickname(?string $nickname): void
+    {
+        $this->nickname = $nickname ? strtolower(trim($nickname)) : $nickname;
     }
 
     /**
@@ -135,7 +143,7 @@ class User implements UserInterface
      */
     public function setFullName(?string $fullName): void
     {
-        $this->fullName = $fullName;
+        $this->fullName = $fullName ? trim($fullName) : $fullName;
     }
 
     /**
@@ -151,7 +159,7 @@ class User implements UserInterface
      */
     public function setAbout(?string $about): void
     {
-        $this->about = $about;
+        $this->about = $about ? preg_replace('/[\r\n]+/', '<br>', trim($about)) : $about;
     }
 
     /**

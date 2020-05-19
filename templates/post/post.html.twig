@@ -1,7 +1,7 @@
 {% for post in posts %}
     <div class="post">
         <div class="head">
-            <a class="user" href="{{ path('profile', {'username': post.user.username}) }}">{{ post.user.username }}</a>
+            <a class="user" href="{{ path('profile', {'nickname': post.user.nickname}) }}">{{ post.user.nickname }}</a>
         </div>
         <div class="body">{{ post.text }}</div>
     </div>

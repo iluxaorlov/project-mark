@@ -18,10 +18,11 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * @param string $text
+     * @param string|null $text
+     *
      * @return string
      */
-    public function formatLineBreak(string $text): string
+    public function formatLineBreak(?string $text): string
     {
         return str_replace('<br>', PHP_EOL, $text);
     }

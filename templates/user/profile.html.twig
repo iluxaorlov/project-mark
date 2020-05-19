@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}{{ user.nickname }}{% endblock %}
 
 {% block body %}
     <div class="container">
         <div id="profile">
-            <div id="username">{{ user.username }}</div>
+            <div id="username">{{ user.nickname }}</div>
             <div id="full_name">{{ user.fullName }}</div>
             <div id="about">{{ user.about|raw }}</div>
             <div id="detail">

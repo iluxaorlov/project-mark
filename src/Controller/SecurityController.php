@@ -24,13 +24,13 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator): Response
     {
-        $lastUsername = $request->get('username');
+        $lastNickname = $request->get('nickname');
         $error = null;
 
         if ($request->isMethod(Request::METHOD_POST)) {
             $user = new User();
-            $user->setUsername($request->get('username'));
-            $user->setPassword($request->get('password'));
+            $user->setNickname($request->get('nickname') ?: null);
+            $user->setPassword($request->get('password') ?: null);
             $errors = $validator->validate($user);
 
             if ($errors->count() > 0) {
@@ -48,7 +48,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/register.html.twig', [
-            'lastUsername' => $lastUsername,
+            'lastNickname' => $lastNickname,
             'error' => $error,
         ]);
     }
@@ -62,11 +62,11 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $lastNickname = $authenticationUtils->getLastUsername();
         $error = $authenticationUtils->getLastAuthenticationError();
 
         return $this->render('security/login.html.twig', [
-            'lastUsername' => $lastUsername,
+            'lastNickname' => $lastNickname,
             'error' => $error,
         ]);
     }
