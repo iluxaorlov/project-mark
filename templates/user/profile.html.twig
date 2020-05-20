@@ -22,7 +22,13 @@
                     <div class="text">Подписчики</div>
                 </div>
             </div>
-            <a id="action" href="{{ path('settings') }}">Настройки</a>
+            {% if app.user == user %}
+                <a id="settings" href="{{ path('settings') }}">Настройки</a>
+            {% else %}
+                <div id="action">
+                    {% include 'user/action.html.twig' %}
+                </div>
+            {% endif %}
         </div>
         <div id="posts">
             {% include 'post/post.html.twig' %}

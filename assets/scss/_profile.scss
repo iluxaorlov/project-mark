@@ -43,7 +43,7 @@
         }
     }
 
-    #action {
+    @mixin button {
         display: block;
         padding: 16px;
         background-color: #8000ff;
@@ -52,5 +52,21 @@
         text-align: center;
         margin-top: 16px;
         border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #action {
+        display: flex;
+        flex-direction: column;
+
+        #subscribe, #unsubscribe {
+            @include button
+        }
+    }
+
+    #settings {
+        @include button
     }
 }

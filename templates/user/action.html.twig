@@ -1,0 +1,5 @@
+{% if app.user.subscriptions.contains(user) %}
+    <button id="unsubscribe">Отписаться</button>
+{% else %}
+    <button id="subscribe">Подписаться</button>
+{% endif %}

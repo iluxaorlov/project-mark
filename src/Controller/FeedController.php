@@ -14,9 +14,7 @@ class FeedController extends AbstractController
     /**
      * @Route("/", name="feed")
      * @IsGranted("ROLE_USER")
-     *
      * @param PostRepository $postRepository
-     *
      * @return Response
      */
     public function feed(PostRepository $postRepository)

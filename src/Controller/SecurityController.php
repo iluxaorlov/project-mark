@@ -15,11 +15,9 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/register", name="register")
-     *
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param ValidatorInterface $validator
-     *
      * @return Response
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, ValidatorInterface $validator): Response

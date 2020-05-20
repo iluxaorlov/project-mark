@@ -15,10 +15,8 @@ class UserController extends AbstractController
     /**
      * @Route("/settings", name="settings")
      * @IsGranted("ROLE_USER")
-     *
      * @param Request $request
      * @param ValidatorInterface $validator
-     *
      * @return Response
      */
     public function settings(Request $request, ValidatorInterface $validator)
@@ -60,9 +58,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{nickname}", name="profile")
-     *
      * @param User $user
-     *
      * @return Response
      */
     public function profile(User $user)

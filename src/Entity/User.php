@@ -19,7 +19,6 @@ class User implements UserInterface
 {
     /**
      * @var string|null
-     *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Service\CustomIdGenerator")
@@ -29,7 +28,6 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="nickname", type="string", nullable=false, unique=true)
      * @Assert\NotBlank(message="Введите имя пользователя")
      * @Assert\Regex("/^\w+$/", message="Имя пользователя может содержать только буквы латинского алфавита и знак нижнего подчеркивания")
@@ -38,21 +36,18 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="full_name", type="string", nullable=true)
      */
     private ?string $fullName;
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="about", type="string", nullable=true)
      */
     private ?string $about;
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="password", type="string", nullable=false)
      * @Assert\NotBlank(message="Введите пароль")
      */
@@ -60,14 +55,12 @@ class User implements UserInterface
 
     /**
      * @var Collection|null
-     *
      * @ORM\ManyToMany(targetEntity="User", mappedBy="subscriptions")
      */
     private ?Collection $subscribers;
 
     /**
      * @var Collection|null
-     *
      * @ORM\ManyToMany(targetEntity="User", inversedBy="subscribers")
      * @ORM\JoinTable(name="subscription",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -78,7 +71,6 @@ class User implements UserInterface
 
     /**
      * @var Collection|null
-     *
      * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
      */
     private ?Collection $posts;

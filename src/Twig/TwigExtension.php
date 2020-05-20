@@ -19,7 +19,6 @@ class TwigExtension extends AbstractExtension
 
     /**
      * @param string|null $text
-     *
      * @return string
      */
     public function formatLineBreak(?string $text): string

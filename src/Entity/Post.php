@@ -12,7 +12,6 @@ class Post
 {
     /**
      * @var string|null
-     *
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="App\Service\CustomIdGenerator")
@@ -22,14 +21,12 @@ class Post
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="text", type="string", nullable=false)
      */
     private ?string $text;
 
     /**
      * @var User|null
-     *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id")
      */
