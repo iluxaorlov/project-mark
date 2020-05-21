@@ -3,26 +3,40 @@
 let action = document.getElementById('action');
 
 if (action) {
-    action.addEventListener('click', (event) => {
-        let element = event.target;
-        let innerText = element.innerText;
+    action.addEventListener('click', clickAction);
+}
 
-        element.innerText = 'Подождите';
-        element.style.color = 'rgba(255, 255, 255, .5)';
-        element.disabled = true;
+function clickAction(event) {
+    let element = event.target;
+    let text = element.innerText;
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', window.location.pathname + '/' + element.id);
-        xhr.send();
+    deactivateButton(element);
 
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                action.innerHTML = xhr.response;
-            } else {
-                element.innerText = innerText;
-                element.style.color = 'rgb(255, 255, 255)';
-                element.disabled = false;
-            }
-        };
-    });
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', window.location.pathname + '/' + element.id);
+    xhr.send();
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            action.innerHTML = xhr.response;
+        } else {
+            activateButton(element, text)
+        }
+    };
+
+    xhr.onerror = () => {
+        activateButton(element, text)
+    };
+}
+
+function deactivateButton(button) {
+    button.innerText = 'Подождите';
+    button.style.color = 'rgba(255, 255, 255, .5)';
+    button.disabled = true;
+}
+
+function activateButton(button, text) {
+    button.innerText = text;
+    button.style.color = 'rgb(255, 255, 255)';
+    button.disabled = false;
 }

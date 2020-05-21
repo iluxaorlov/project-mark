@@ -23,7 +23,7 @@
                 </div>
             </div>
             {% if app.user == user %}
-                <a id="settings" href="{{ path('settings') }}">Настройки</a>
+                <a id="button" href="{{ path('settings') }}">Настройки</a>
             {% else %}
                 <div id="action">
                     {% include 'user/action.html.twig' %}
