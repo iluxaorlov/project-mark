@@ -9,18 +9,18 @@
             <div id="full_name">{{ user.fullName }}</div>
             <div id="about">{{ user.about|raw }}</div>
             <div id="detail">
-                <div class="item">
+                <a class="item" href="#">
                     <div class="count">{{ user.posts.count }}</div>
                     <div class="text">Публикации</div>
-                </div>
-                <div class="item">
+                </a>
+                <a class="item" href="{{ path('subscriptions', {'nickname': user.nickname}) }}">
                     <div class="count">{{ user.subscriptions.count }}</div>
                     <div class="text">Подписки</div>
-                </div>
-                <div class="item">
+                </a>
+                <a class="item" href="{{ path('subscribers', {'nickname': user.nickname}) }}">
                     <div class="count">{{ user.subscribers.count }}</div>
                     <div class="text">Подписчики</div>
-                </div>
+                </a>
             </div>
             {% if app.user == user %}
                 <a id="button" href="{{ path('settings') }}">Настройки</a>

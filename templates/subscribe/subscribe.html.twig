@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {% for user in users %}
+        <a href="{{ path('profile', {'nickname': user.nickname}) }}">{{ user.nickname }}</a>
+    {% endfor %}
+{% endblock %}
