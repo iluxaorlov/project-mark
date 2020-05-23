@@ -7,36 +7,49 @@ if (action) {
 }
 
 function clickAction(event) {
-    let element = event.target;
-    let text = element.innerText;
+    let button = event.target;
+    let buttonText = button.innerText;
 
-    deactivateButton(element);
+    deactivateButton();
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', window.location.pathname + '/' + element.id);
+    xhr.open('POST', window.location.pathname + '/' + button.id);
     xhr.send();
 
     xhr.onload = () => {
         if (xhr.status === 200) {
             action.innerHTML = xhr.response;
+
+            let count = document.getElementsByClassName('count')[2];
+
+            switch (button.id) {
+                case 'subscribe':
+                    count.innerText = Number(count.innerText) + 1;
+                    break;
+                case 'unsubscribe':
+                    count.innerText = Number(count.innerText) - 1;
+                    break;
+            }
         } else {
-            activateButton(element, text)
+            activateButton()
         }
     };
 
     xhr.onerror = () => {
-        activateButton(element, text)
+        activateButton()
     };
-}
 
-function deactivateButton(button) {
-    button.innerText = 'Подождите';
-    button.style.color = 'rgba(255, 255, 255, .5)';
-    button.disabled = true;
-}
+    function deactivateButton() {
+        button.innerText = 'Подождите';
+        button.style.cursor = 'default';
+        button.style.color = 'rgba(255, 255, 255, .5)';
+        button.disabled = true;
+    }
 
-function activateButton(button, text) {
-    button.innerText = text;
-    button.style.color = 'rgb(255, 255, 255)';
-    button.disabled = false;
+    function activateButton() {
+        button.innerText = buttonText;
+        button.style.cursor = 'pointer';
+        button.style.color = 'rgb(255, 255, 255)';
+        button.disabled = false;
+    }
 }
