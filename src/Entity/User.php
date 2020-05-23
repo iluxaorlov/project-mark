@@ -72,6 +72,7 @@ class User implements UserInterface
     /**
      * @var Collection|null
      * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     * @ORM\OrderBy({"createdAt" = "desc"})
      */
     private ?Collection $posts;
 
