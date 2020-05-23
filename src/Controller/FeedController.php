@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Post;
+use App\Entity\User;
 use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,9 +19,10 @@ class FeedController extends AbstractController
      */
     public function feed(PostRepository $postRepository)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        /** @var User $user */
+        $user = $this->getUser();
 
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findFeed($user);
 
         return $this->render('feed/feed.html.twig', [
             'posts' => $posts,

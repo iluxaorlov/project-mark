@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\PostRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -31,6 +33,12 @@ class Post
      * @ORM\JoinColumn(name="user_id")
      */
     private ?User $user;
+
+    /**
+     * @var DateTime|null
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private ?DateTime $createdAt;
 
     /**
      * @return string|null
@@ -78,5 +86,29 @@ class Post
     public function setUser(?User $user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTime|null $createdAt
+     */
+    public function setCreatedAt(?DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new DateTime();
     }
 }
