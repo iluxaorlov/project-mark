@@ -1,0 +1,30 @@
+#users {
+    display: flex;
+    flex-direction: column;
+
+    .user {
+        border-bottom: 1px solid rgba(#000000, .1);
+        padding: 16px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #8000ff;
+        transition: color 125ms linear;
+        background-color: #ffffff;
+
+        &:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        &:last-child {
+            border: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 0 0 rgba(#000000, .1);
+        }
+
+        &:only-child {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 0 0 rgba(#000000, .1);
+        }
+    }
+}

@@ -20,8 +20,17 @@
     grid-gap: 16px;
 }
 
+#empty {
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    font-size: 16px;
+    text-align: center;
+    color: rgba(#000000, .5);
+}
+
 @import 'header';
 @import 'security';
 @import 'post';
 @import 'profile';
 @import 'settings';
+@import 'subscribe';
